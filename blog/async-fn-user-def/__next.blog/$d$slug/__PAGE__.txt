@@ -1,0 +1,48 @@
+1:"$Sreact.fragment"
+6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+2:Tf5b,<pre><code class="hljs language-rust">
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">cx</span> = std::task::Context::<span class="hljs-title function_ invoke__">from_waker</span>(std::task::Waker::<span class="hljs-title function_ invoke__">noop</span>());
+<span class="hljs-keyword">let</span> <span class="hljs-variable">_</span> = std::pin::pin!(_async_block_closure_test()).<span class="hljs-title function_ invoke__">poll</span>(&#x26;<span class="hljs-keyword">mut</span> cx);
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">_async_block_closure_test</span>() {
+
+    <span class="hljs-keyword">trait</span> <span class="hljs-title class_">LendingFnMut</span>&#x3C;Arg> {
+        <span class="hljs-keyword">type</span> <span class="hljs-title class_">LendingOutput</span>&#x3C;<span class="hljs-symbol">'t</span>>
+        <span class="hljs-keyword">where</span>
+            <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'t</span>;
+
+        <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_mut</span>&#x3C;<span class="hljs-symbol">'t</span>>(&#x26;<span class="hljs-symbol">'t</span> <span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, arg: Arg) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::LendingOutput&#x3C;<span class="hljs-symbol">'t</span>>;
+    }
+
+    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">AnonymousAsyncClosure</span>&#x3C;<span class="hljs-symbol">'a</span>> {
+        <span class="hljs-comment">// captures</span>
+        xs: &#x26;<span class="hljs-symbol">'a</span> <span class="hljs-keyword">mut</span> <span class="hljs-type">Vec</span>&#x3C;<span class="hljs-type">i32</span>>
+    }
+
+    <span class="hljs-keyword">impl</span>&#x3C;<span class="hljs-symbol">'a</span>> LendingFnMut&#x3C;<span class="hljs-type">i32</span>> <span class="hljs-keyword">for</span> <span class="hljs-title class_">AnonymousAsyncClosure</span>&#x3C;<span class="hljs-symbol">'a</span>> {
+        
+        <span class="hljs-comment">// impl trait in assoc type now requires nightly...</span>
+        
+        <span class="hljs-keyword">type</span> <span class="hljs-title class_">LendingOutput</span>&#x3C;<span class="hljs-symbol">'t</span>> = <span class="hljs-keyword">impl</span> <span class="hljs-title class_">Future</span>&#x3C;Output = ()> <span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'t</span>;
+
+        <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_mut</span>&#x3C;<span class="hljs-symbol">'t</span>>(&#x26;<span class="hljs-symbol">'t</span> <span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, arg: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::LendingOutput&#x3C;<span class="hljs-symbol">'t</span>> {
+            <span class="hljs-keyword">async</span> <span class="hljs-keyword">move</span> {
+                <span class="hljs-keyword">self</span>.xs.<span class="hljs-title function_ invoke__">push</span>(arg);
+            }
+        }
+    }
+
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">xs</span> = <span class="hljs-built_in">vec!</span>[];
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">cls</span> = AnonymousAsyncClosure { xs: &#x26;<span class="hljs-keyword">mut</span> xs };
+    cls.<span class="hljs-title function_ invoke__">call_mut</span>(<span class="hljs-number">42</span>).<span class="hljs-keyword">await</span>;
+
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{xs:?}"</span>);
+}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】AsyncFnMutをGATで強引に実装してみる"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 5, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"lIdNoilr0eVe0eAHOwE_s"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

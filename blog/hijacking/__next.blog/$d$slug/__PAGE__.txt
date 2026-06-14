@@ -1,0 +1,66 @@
+1:"$Sreact.fragment"
+3:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+2:Tb0b,<h1>前提条件</h1>
+<ul>
+<li>mitmproxy が利用可能</li>
+</ul>
+<h1>SSL Proxying</h1>
+<p>以下、PC（プロキシサーバ）のIPが <code>192.168.0.16</code> であるとする。</p>
+<ul>
+<li><code>username/.mitmproxy/</code> に生成された <code>mitmproxy-ca-cert.cer</code> をクライアント端末へコピーし、ユーザー証明書としてインストールしておく。</li>
+</ul>
+<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8888
+</code></pre>
+<h1>VPN</h1>
+<ul>
+<li><a href="https://github.com/ProxidBean/VProxid">VProxid</a> をインストールし、プロファイルを作成する。</li>
+</ul>
+<pre><code>Server: 192.168.0.16
+Server Port: 8888
+Server Type: http
+Enable Auth: OFF
+Apps: (select target apps)
+</code></pre>
+<ul>
+<li>mitmproxy 側で選択したアプリの通信内容が見えることを確認する。</li>
+</ul>
+<h1>URL Mapping</h1>
+<p>URL Mapping によって、プロキシで受け取ったリクエストをどの宛先へ転送するかを対応付ける。
+今回は、ローカルのモックサーバ <code>192.168.0.16:7777</code> へ転送し、偽のレスポンスを返してみる。mitmproxyでは、Python スクリプトを利用することで実装できる。</p>
+<h2>Python Script</h2>
+<ul>
+<li>map.py</li>
+</ul>
+<pre><code class="hljs language-python"><span class="hljs-keyword">from</span> mitmproxy <span class="hljs-keyword">import</span> http
+<span class="hljs-keyword">import</span> requests
+
+REWRITE_SERVER = <span class="hljs-string">"http://192.168.0.16:7777"</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">flow: http.HTTPFlow</span>):
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">if</span> <span class="hljs-string">"api-v1.app.com"</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> flow.request.pretty_host:
+            <span class="hljs-keyword">return</span>
+        
+        url = REWRITE_SERVER + flow.request.path
+
+        r = requests.request(
+            method=flow.request.method,
+            url=url,
+            headers=<span class="hljs-built_in">dict</span>(flow.request.headers),
+            data=flow.request.raw_content,
+            timeout=<span class="hljs-number">10</span>
+        )
+
+        flow.response = http.Response.make(
+            r.status_code,
+            r.content,
+            <span class="hljs-built_in">dict</span>(r.headers)
+        )
+        
+    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+        <span class="hljs-built_in">print</span>(e)
+</code></pre>
+<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8888 -s map.py
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】アプリの通信内容をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]]}]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"V2OKOXUntCourToo2qHrH"}
+5:null

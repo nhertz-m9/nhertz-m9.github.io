@@ -1,0 +1,81 @@
+1:"$Sreact.fragment"
+6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+2:Tecc,<h1>前提条件</h1>
+<ul>
+<li>公式にバンドルが配信されているバージョンであること</li>
+</ul>
+<h1>How to extract</h1>
+<ul>
+<li>
+<p>現在、配信されるバンドルファイルは <code>100MB</code> ごとに分割されており、それぞれ <code>6.14.11_0.bundle</code> <code>6.14.11_1.bundle</code> ... と命名され、<code>/data/data/moe.low.arc/files/dltemp</code> に配置される。ただし、ダウンロード中の場合は <code>.bundle.tmp</code></p>
+</li>
+<li>
+<p>バンドルのメタデータを含む <code>6.14.11.json</code> も必要。</p>
+</li>
+<li>
+<p>ゲーム内で上記のファイルをダウンロードし終えると、ファイルの検証に移り、これらのファイルはすぐに削除されてしまう。（アプリ本体にマージされる）</p>
+</li>
+<li>
+<p><strong>つまり、最終分割 <code>6.14.11_N.bundle</code> のダウンロードが完了した瞬間にアプリを強制終了すればよい。</strong></p>
+</li>
+<li>
+<p><code>N</code> の値はゲーム内メッセージで確認できるファイルサイズを <code>100MB</code> で割った値により計算できる。（例： <code>853.33MB</code> -> <code>N = 8</code>）</p>
+</li>
+</ul>
+<h1>Extract bundles!</h1>
+<p><code>/data/data/</code> へのアクセスは非 root 端末では禁止されている。そのため、Android Studio Emulator を使用する。
+Servicesには <code>Google APIs</code>を、System Image に <code>arm64-v8a</code> をサポートするものを選択する。</p>
+<h2>Script for extract</h2>
+<ul>
+<li>watch.sh</li>
+</ul>
+<pre><code class="hljs language-bash"><span class="hljs-meta">#!/system/bin/sh</span>
+
+PACKAGE=<span class="hljs-string">"moe.low.arc"</span>
+TARGET=<span class="hljs-string">"/data/data/moe.low.arc/files/dltemp/6.14.11_8.bundle"</span> <span class="hljs-comment"># N = 8</span>
+
+<span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>
+<span class="hljs-keyword">do</span>
+<span class="hljs-keyword">if</span> [ -f <span class="hljs-string">"<span class="hljs-variable">$TARGET</span>"</span> ]; <span class="hljs-keyword">then</span>
+am force-stop <span class="hljs-string">"<span class="hljs-variable">$PACKAGE</span>"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Target detected. App stopped."</span>
+<span class="hljs-built_in">break</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-keyword">done</span>
+</code></pre>
+<ul>
+<li>エミュレータ内で実行</li>
+</ul>
+<pre><code class="hljs language-bash">adb root <span class="hljs-comment"># if needed</span>
+adb push watch.sh /data/local/tmp/
+adb shell
+
+<span class="hljs-comment"># emulator shell</span>
+su
+<span class="hljs-built_in">chmod</span> 755 /data/local/tmp/watch.sh
+/data/local/tmp/watch.sh <span class="hljs-comment"># loop...</span>
+</code></pre>
+<ul>
+<li>この状態でゲームを起動し、バンドルをダウンロードすると、検証が始まる前にゲームが落ちるので、目的のファイルを抽出できる。</li>
+</ul>
+<h1>Congratulations!</h1>
+<h1>Appendix （.bundle -> .cb への変換）</h1>
+<ul>
+<li>
+<p><a href="https://github.com/Lost-MSth/Arcaea-Bundler.git">Bundler</a> をクローンし、<code>main.py</code> を入手する。</p>
+</li>
+<li>
+<p><code>./bundles/</code> に <code>dltemp/</code> 以下のファイルがコピーされているとする。</p>
+</li>
+</ul>
+<pre><code class="hljs language-bash">python main.py d -i ./bundles/6.14.11.bundle -m ./bundles/6.14.11.json 
+<span class="hljs-comment"># -> ./output</span>
+python main.py b -i output -o ./rebundled -av 6.14.11 -bv 6.14.11 
+<span class="hljs-comment"># .cb files generated</span>
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"V2OKOXUntCourToo2qHrH"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

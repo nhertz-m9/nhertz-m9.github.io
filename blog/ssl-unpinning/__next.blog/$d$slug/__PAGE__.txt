@@ -1,0 +1,94 @@
+1:"$Sreact.fragment"
+6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+2:T133c,<h1>前提条件</h1>
+<ul>
+<li>Android Sdk (apktool, zipalign, apksigner)</li>
+<li>Arcaea 6.14.11 (apk/xapk)</li>
+<li>Ghidra</li>
+</ul>
+<h1>APKの編集準備</h1>
+<pre><code class="hljs language-bash">apktool d <span class="hljs-string">"Arcaea.xapk"</span>
+<span class="hljs-built_in">cd</span> <span class="hljs-string">"Arcaea.xapk.out/unknown"</span>
+apktool d <span class="hljs-string">"moe.low.arc.apk"</span> <span class="hljs-comment"># decompress all other split apks...</span>
+
+<span class="hljs-built_in">cd</span> <span class="hljs-string">"./config.arm64_v8a/lib/arm64-v8a"</span> <span class="hljs-comment"># you can find libcocos2dcpp.so here</span>
+</code></pre>
+<h1>SSL Pinning</h1>
+<p><code>libcocos2dcpp.so</code> 内で独自の SSL Pinning が実装されているため、
+<a href="https://codeshare.frida.re/@masbog/frida-android-unpinning-ssl/">Project: frida-android-unpinning-ssl</a> 等の汎用スクリプトは使用できない。</p>
+<h2>Ghidraでパッチを当てる</h2>
+<ul>
+<li>Ghidra で <code>libcocos2dcpp.so</code> を開き、Analyze を実行。</li>
+<li>Search -> Scalar Search で <code>408(0x198)</code> を検索。</li>
+<li><code>add x0, x0</code> でフィルタリングし、ヒットした数個の命令へジャンプし、それぞれをデコンパイルする。(Window -> Decompile)</li>
+<li>以下のようなデコンパイル結果になっている関数を見つける。（今回は <code>SUB_009ffee4</code> が該当する。）</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">UndefinedFunction_009ffee4</span><span class="hljs-params">(<span class="hljs-type">long</span> param_l, undefined8 param_2)</span> {
+    
+    mutex4lockEv(param_l + <span class="hljs-number">0x198</span>);
+    <span class="hljs-comment">// extra 2 lines..</span>
+
+    <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<ul>
+<li>この関数の <code>xref</code> から唯一の呼び出し元関数へジャンプし、該当する <code>BL</code> 命令を <code>NOP</code> する。(Right Click -> Patch Instruction)</li>
+</ul>
+<pre><code>BL SUB_009ffee4 -> NOP
+</code></pre>
+<ul>
+<li>Search -> Scalar Search で <code>488(0x1e8)</code> を検索。</li>
+<li>上と同様の手順で以下のような関数を見つける</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">UndefinedFunction_017e71c0</span><span class="hljs-params">(<span class="hljs-type">long</span> param_l, undefined8 param_2, <span class="hljs-comment">/* ...args */</span>)</span> {
+
+    <span class="hljs-comment">// ...</span>
+    mutex4lockEv(param_l + <span class="hljs-number">0x1e8</span>);
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">if</span> (lVar2 + <span class="hljs-number">0x28</span> != param_3) {
+        <span class="hljs-comment">// ...</span>
+    }
+    mutex6unlockEv(param_l + <span class="hljs-number">0x1e8</span>);
+    <span class="hljs-keyword">if</span> (*(<span class="hljs-type">long</span> *)(lVar1 + <span class="hljs-number">0x28</span>) == lStack_48) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    __stack_chk_fail();
+}
+</code></pre>
+<ul>
+<li>上と同様に、該当する <code>BL</code> 命令を <code>NOP</code> する。</li>
+<li>File -> Export Program で ELF を選択し、任意のディレクトリにエクスポート。</li>
+</ul>
+<h2>APKを再ビルドする</h2>
+<ul>
+<li>パッチを当てた <code>libcocos2dcpp.so</code> で、元のファイルを上書きする。</li>
+<li>署名用のキーストアを作っておく。<code>./my.keystore</code></li>
+</ul>
+<pre><code class="hljs language-bash">apktool b <span class="hljs-string">"moe.low.arc.apk.out"</span> --use-aapt2 -o <span class="hljs-string">"moe.low.arc.apk"</span>
+zipalign -p -f 4 <span class="hljs-string">"moe.low.arc.apk"</span> <span class="hljs-string">"moe.low.arc-aligned.apk"</span>
+apksigner sign --ks ./my.keystore --ks-key-alias myalias <span class="hljs-string">"moe.low.arc-aligned.apk"</span>
+<span class="hljs-comment"># as well as other split apk folders...</span>
+</code></pre>
+<h2>APKをインストールする</h2>
+<ul>
+<li>adb デバッグが有効であることを確認する。</li>
+</ul>
+<pre><code class="hljs language-bash">adb devices
+</code></pre>
+<ul>
+<li>分割 APK のままインストール可能。</li>
+</ul>
+<pre><code class="hljs language-bash">adb install-multiple <span class="hljs-string">"moe.low.arc-aligned.apk"</span> <span class="hljs-string">"config.xxxhdpi-aligned.apk"</span> <span class="hljs-comment"># ...</span>
+</code></pre>
+<ul>
+<li>正常に起動することを確認する。</li>
+</ul>
+<h1>Congratulations!</h1>
+<p><a href="hijacking">【Android】アプリの通信内容をハイジャックする</a></p>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】SSL Unpinning"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"V2OKOXUntCourToo2qHrH"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

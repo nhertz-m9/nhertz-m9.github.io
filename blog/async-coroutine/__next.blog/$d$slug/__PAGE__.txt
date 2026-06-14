@@ -96,7 +96,7 @@
         coroutine2.<span class="hljs-title function_ invoke__">resume</span>();
     }
 }
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】内部のコルーチンを使ったジェネレータの簡易実装"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 6, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"JB7ZuYOarpHri8qdbZYFX"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】スタックレスコルーチンを用いたジェネレータの簡易実装"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 6, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Ii7l-usVWOfw9lJ4BCNjq"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
 5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]

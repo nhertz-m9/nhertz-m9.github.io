@@ -1,0 +1,45 @@
+1:"$Sreact.fragment"
+3:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+2:T6c7,<h1>前提条件</h1>
+<ul>
+<li>Oracle VirtualBox</li>
+<li>Whonix 導入済み</li>
+</ul>
+<h1>目的</h1>
+<ul>
+<li>Tor の ExitNodes はリスト化されており、一部のサイトはこれを検知し、アクセスをブロックする。</li>
+<li>そこで、ExitNode の後に追加でプロキシを挟むことにより、これを回避する。</li>
+<li>Whonix では <code>9050</code> 番ポートへ接続することで SOCKS5 プロキシを利用できる。</li>
+</ul>
+<h1>Setup OpenVPN</h1>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt update
+<span class="hljs-built_in">sudo</span> apt install openvpn
+</code></pre>
+<ul>
+<li>
+<p><a href="https://www.vpngate.net/ja/">VPN Gate</a> から任意の中継サーバを選択し、OpenVPN 用の設定ファイル <code>.ovpn</code> をダウンロード。
+（例：<code>vpngate_public-vpn-227.opengw.net_tcp_443.ovpn</code>）</p>
+</li>
+<li>
+<p><code>.ovpn</code> を開き、以下の二項目を確認。protocol には <code>tcp</code> を指定し、proxy に <code>socks-proxy</code> を追記する。</p>
+</li>
+</ul>
+<pre><code># Specify the underlying protocol beyond the Internet.
+proto tcp
+
+# The HTTP/HTTPS proxy setting.
+;http-proxy-retry
+;http-proxy [proxy server] [proxy port]
+socks-proxy 10.152.152.10 9050
+</code></pre>
+<ul>
+<li>起動する</li>
+</ul>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> openvpn --config vpngate_public-vpn-227.opengw.net_tcp_443.ovpn
+</code></pre>
+<ul>
+<li><a href="https://browserleaks.com/">BrowserLeaks</a> へアクセスし、IP が プロキシサーバのものになっていることを確認する。</li>
+</ul>
+<h1>Congratulations!</h1>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Whonix】SOCKS5 プロキシで Tor の ExitNode を秘匿する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 15, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","whonix",{"href":"/tags/whonix","children":"whonix"}],["$","a","tor",{"href":"/tags/tor","children":"tor"}]]}]}]}]]}]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Ii7l-usVWOfw9lJ4BCNjq"}
+5:null

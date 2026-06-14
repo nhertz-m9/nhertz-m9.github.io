@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
 6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-2:Tecc,<h1>前提条件</h1>
+2:Teba,<h1>前提条件</h1>
 <ul>
 <li>公式にバンドルが配信されているバージョンであること</li>
 </ul>
@@ -61,7 +61,7 @@ su
 <li>この状態でゲームを起動し、バンドルをダウンロードすると、検証が始まる前にゲームが落ちるので、目的のファイルを抽出できる。</li>
 </ul>
 <h1>Congratulations!</h1>
-<h1>Appendix （.bundle -> .cb への変換）</h1>
+<h1>Appendix: .bundle -> .cb</h1>
 <ul>
 <li>
 <p><a href="https://github.com/Lost-MSth/Arcaea-Bundler.git">Bundler</a> をクローンし、<code>main.py</code> を入手する。</p>
@@ -74,7 +74,7 @@ su
 <span class="hljs-comment"># -> ./output</span>
 python main.py b -i output -o ./rebundled -av 6.14.11 -bv 6.14.11 
 <span class="hljs-comment"># .cb files generated</span>
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"u_WlJ9kpHBGfJ0jU3kZW8"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"JB7ZuYOarpHri8qdbZYFX"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]

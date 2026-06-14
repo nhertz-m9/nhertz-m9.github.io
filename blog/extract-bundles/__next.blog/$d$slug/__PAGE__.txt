@@ -74,7 +74,7 @@ su
 <span class="hljs-comment"># -> ./output</span>
 python main.py b -i output -o ./rebundled -av 6.14.11 -bv 6.14.11 
 <span class="hljs-comment"># .cb files generated</span>
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"R7YmfkIVeFt2xvMcPziu0"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"u_WlJ9kpHBGfJ0jU3kZW8"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]

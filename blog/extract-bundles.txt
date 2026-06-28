@@ -8,10 +8,10 @@ a:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmw
 c:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"MetadataBoundary"]
 e:I[68027,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default",1]
 :HL["/_next/static/chunks/0qur5ps326cr1.css","style"]
-0:{"P":null,"c":["","blog","extract-bundles"],"q":"","i":false,"f":[[["",{"children":["blog",{"children":[["slug","extract-bundles","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/13h-0fd.p-1ga.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"const setTheme=e=>document.documentElement.className=e;"}}]}],["$","body",null,{"children":["$","div",null,{"className":"content","children":[["$","header",null,{"children":[["$","div",null,{"className":"main","children":["$","$L2",null,{"href":"/","children":"NativeMethods.txt"}]}],["$","nav",null,{"children":[["$","$L2",null,{"href":"/","children":"Posts"}],["$","$L2",null,{"href":"/tags","children":"Tags"}]]}]]}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"children":[["$","hr",null,{}],["$","a",null,{"href":"/index.xml","children":"RSS"}]]}]]}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],{},null,false,null]},null,false,"$@9"]},null,false,"$@9"]},null,false,null],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],null]}],false]],"m":"$undefined","G":["$e",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Ii7l-usVWOfw9lJ4BCNjq"}
+0:{"P":null,"c":["","blog","extract-bundles"],"q":"","i":false,"f":[[["",{"children":["blog",{"children":[["slug","extract-bundles","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/13h-0fd.p-1ga.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"const setTheme=e=>document.documentElement.className=e;"}}]}],["$","body",null,{"children":["$","div",null,{"className":"content","children":[["$","header",null,{"children":[["$","div",null,{"className":"main","children":["$","$L2",null,{"href":"/","children":"NativeMethods.txt"}]}],["$","nav",null,{"children":[["$","$L2",null,{"href":"/","children":"Posts"}],["$","$L2",null,{"href":"/tags","children":"Tags"}]]}]]}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"children":[["$","hr",null,{}],["$","a",null,{"href":"/index.xml","children":"RSS"}]]}]]}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],{},null,false,null]},null,false,"$@9"]},null,false,"$@9"]},null,false,null],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],null]}],false]],"m":"$undefined","G":["$e",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"d4KXh9-eYFGV48Mgvdt2o"}
 f:[]
 9:"$Wf"
-10:Teb2,<h1>前提条件</h1>
+10:Tf7e,<h1>前提条件</h1>
 <ul>
 <li>公式にバンドルが配信されているバージョンであること</li>
 </ul>
@@ -27,7 +27,7 @@ f:[]
 <p>ゲーム内で上記のファイルをダウンロードし終えると、ファイルの検証に移り、これらのファイルはすぐに削除されてしまう。（アプリ本体にマージされる）</p>
 </li>
 <li>
-<p><strong>つまり、最終分割 <code>6.14.11_N.bundle</code> のダウンロードが完了した瞬間にアプリを強制終了すればよい。</strong></p>
+<p><strong>これを回避するには、すべての <code>6.14.11_N.bundle</code> をダウンロードし終えた直後にアプリを強制終了すればよい。</strong></p>
 </li>
 <li>
 <p><code>N</code> の値はゲーム内メッセージで確認できるファイルサイズを <code>100MB</code> で割った値により計算できる。（例： <code>853.33MB</code> -> <code>N = 8</code>）</p>
@@ -38,25 +38,26 @@ f:[]
 Servicesには <code>Google APIs</code> を、System Image に <code>arm64-v8a</code> をサポートするものを選択する。</p>
 <h2>Script</h2>
 <ul>
-<li>watch.sh</li>
+<li>watch.sh (<code>N = 8</code>)</li>
 </ul>
 <pre><code class="hljs language-bash"><span class="hljs-meta">#!/system/bin/sh</span>
 
 PACKAGE=<span class="hljs-string">"moe.low.arc"</span>
-TARGET=<span class="hljs-string">"/data/data/moe.low.arc/files/dltemp/6.14.11_8.bundle"</span> <span class="hljs-comment"># N = 8</span>
+TARGET=<span class="hljs-string">"/data/data/<span class="hljs-variable">${PACKAGE}</span>/files/dltemp"</span>
 
 <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>
 <span class="hljs-keyword">do</span>
-<span class="hljs-keyword">if</span> [ -f <span class="hljs-string">"<span class="hljs-variable">$TARGET</span>"</span> ]; <span class="hljs-keyword">then</span>
-am force-stop <span class="hljs-string">"<span class="hljs-variable">$PACKAGE</span>"</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-string">"Target detected. App stopped."</span>
-<span class="hljs-built_in">break</span>
-<span class="hljs-keyword">fi</span>
-
+    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.14.11_0.bundle"</span> ] &#x26;&#x26;
+    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.14.11_1.bundle"</span> ] &#x26;&#x26;
+    <span class="hljs-comment"># ...</span>
+    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.14.11_8.bundle"</span> ] &#x26;&#x26; {
+        am force-stop <span class="hljs-string">"<span class="hljs-variable">$PACKAGE</span>"</span>
+        <span class="hljs-built_in">exit</span> 0
+    }
 <span class="hljs-keyword">done</span>
 </code></pre>
 <ul>
-<li>エミュレータ内で実行</li>
+<li>エミュレータへ転送し、実行。</li>
 </ul>
 <pre><code class="hljs language-bash">adb root <span class="hljs-comment"># if needed</span>
 adb push watch.sh /data/local/tmp/
@@ -65,11 +66,13 @@ adb shell
 <span class="hljs-comment"># emulator shell</span>
 su
 <span class="hljs-built_in">chmod</span> 755 /data/local/tmp/watch.sh
-/data/local/tmp/watch.sh <span class="hljs-comment"># loop...</span>
+/data/local/tmp/watch.sh
 </code></pre>
 <ul>
 <li>この状態でゲームを起動し、バンドルをダウンロードすると、検証が始まる前にゲームが落ちるので、目的のファイルを抽出できる。</li>
 </ul>
+<pre><code class="hljs language-bash">adb pull /data/data/moe.low.arc/files/dltemp
+</code></pre>
 <h1>Congratulations!</h1>
 <h1>Appendix: .bundle -> .cb</h1>
 <ul>
@@ -84,8 +87,9 @@ su
 <span class="hljs-comment"># -> ./output</span>
 python main.py b -i output -o ./rebundled -av 6.14.11 -bv 6.14.11 
 <span class="hljs-comment"># .cb files generated</span>
-</code></pre>5:["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$10"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":"$L11"}]]}]}]
-11:["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]
+</code></pre>5:["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$10"}}],"$L11","$L12"]}]}]
+11:["$","br",null,{}]
+12:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 8:null
 d:[["$","title","0",{"children":"NativeMethods.txt"}],["$","meta","1",{"name":"description","content":"blog"}]]

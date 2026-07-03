@@ -1,33 +1,53 @@
 1:"$Sreact.fragment"
-3:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-2:Tb0b,<h1>前提条件</h1>
+6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+2:Td90,<h1>前提条件</h1>
 <ul>
-<li>mitmproxy が利用可能</li>
+<li><a href="https://www.mitmproxy.org/">mitmproxy</a></li>
+<li><a href="https://f-droid.org/en/packages/com.github.dyhkwong.sagernet/">Exclave</a></li>
 </ul>
 <h1>SSL Proxying</h1>
-<p>以下、PC（プロキシサーバ）のIPが <code>192.168.0.16</code> であるとする。</p>
 <ul>
-<li><code>username/.mitmproxy/</code> に生成された <code>mitmproxy-ca-cert.cer</code> をクライアント端末へコピーし、ユーザー証明書としてインストールしておく。</li>
+<li>TLS を終端させる場合、<code>~/.mitmproxy/</code> に生成されたルート証明書 <code>mitmproxy-ca-cert.cer</code> をクライアント端末へコピーし、ユーザー証明書としてインストールしておく。</li>
 </ul>
-<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8888
+<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080
+</code></pre>
+<h2>Run on WSL2</h2>
+<ul>
+<li><code>.wslconfig</code> に追記、ミラーモードの設定を行う。</li>
+</ul>
+<pre><code>[wsl2]
+networkingMode=mirrored
+</code></pre>
+<pre><code>wsl --shutdown
+bash
+ip addr
+</code></pre>
+<ul>
+<li>必要に応じてファイアウォールを開放する。</li>
+</ul>
+<pre><code>New-NetFirewallRule `
+  -DisplayName "WSL mitmproxy" `
+  -Direction Inbound `
+  -Protocol TCP `
+  -LocalPort 8080 `
+  -Action Allow
 </code></pre>
 <h1>VPN</h1>
 <ul>
-<li><a href="https://github.com/ProxidBean/VProxid">VProxid</a> をインストールし、プロファイルを作成する。</li>
+<li><a href="https://f-droid.org/en/packages/com.github.dyhkwong.sagernet/">Exclave</a> をインストールし、プロファイルを作成する。</li>
 </ul>
-<pre><code>Server: 192.168.0.16
-Server Port: 8888
-Server Type: http
-Enable Auth: OFF
-Apps: (select target apps)
+<pre><code>Server Type: HTTP
+Server: 192.168.0.16
+Server Port: 8080
 </code></pre>
 <ul>
-<li>mitmproxy 側で選択したアプリの通信内容が見えることを確認する。</li>
+<li>警告が出る場合、<code>Settings</code> -> <code>Protocol settings</code> -> <code>Security tips</code> を無効にする。</li>
+<li>VPN を起動し、mitmproxy 側で通信内容が見えることを確認する。</li>
 </ul>
 <h1>URL Mapping</h1>
 <p>URL Mapping によって、プロキシで受け取ったリクエストをどの宛先へ転送するかを対応付ける。
-今回は、ローカルのモックサーバ <code>192.168.0.16:7777</code> へ転送し、偽のレスポンスを返してみる。mitmproxyでは、Python スクリプトを利用することで実装できる。</p>
+今回は、ローカルのモックサーバ <code>192.168.0.16:7777</code> へ転送し、偽のレスポンスを返してみる。mitmproxy では、Python スクリプトを利用することで実装できる。</p>
 <h2>Python Script</h2>
 <ul>
 <li>map.py</li>
@@ -61,6 +81,9 @@ REWRITE_SERVER = <span class="hljs-string">"http://192.168.0.16:7777"</span>
     <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
         <span class="hljs-built_in">print</span>(e)
 </code></pre>
-<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8888 -s map.py
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】アプリの通信内容をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]]}]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"d4KXh9-eYFGV48Mgvdt2o"}
-5:null
+<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080 -s map.py
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】アプリの通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"mEqrwDZULBV92wd3ramt_"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","android",{"href":"/tags/android","children":"android"}]]}]}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

@@ -1,6 +1,7 @@
 1:"$Sreact.fragment"
-6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
+6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
 2:T1e36,<pre><code class="hljs language-rust"><span class="hljs-meta">#[derive(Default, Clone)]</span>
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">PollLock</span> {
     inner: std::rc::Rc&#x3C;std::cell::RefCell&#x3C;<span class="hljs-type">bool</span>>>,
@@ -96,8 +97,8 @@
         coroutine2.<span class="hljs-title function_ invoke__">resume</span>();
     }
 }
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】スタックレスコルーチンを用いたジェネレータの簡易実装"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 6, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"URiwgC6m444IkWJVpbmmI"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】スタックレスコルーチンを用いたジェネレータの簡易実装"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 6, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"aTAspe4KRgefnffSFynAu"}
 3:["$","br",null,{}]
-4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","a","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
-5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
-8:null
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
+5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

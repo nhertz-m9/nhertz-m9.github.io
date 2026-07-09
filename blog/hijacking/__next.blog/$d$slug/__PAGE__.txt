@@ -1,17 +1,27 @@
 1:"$Sreact.fragment"
-5:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
-6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
-2:Td6a,<h1>前提条件</h1>
+6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+2:T1096,<h1>前提条件</h1>
 <ul>
+<li><a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux 2</a></li>
 <li><a href="https://www.mitmproxy.org/">mitmproxy</a></li>
 <li><a href="https://f-droid.org/en/packages/com.github.dyhkwong.sagernet/">Exclave</a></li>
 </ul>
-<h1>SSL Proxying</h1>
+<h1>SSL Proxying with mitmproxy</h1>
+<h2>Install on WSL2</h2>
 <ul>
-<li>TLS を終端させる場合、<code>~/.mitmproxy/</code> に生成されたルート証明書 <code>mitmproxy-ca-cert.cer</code> をクライアント端末へコピーし、ユーザー証明書としてインストールしておく。</li>
+<li>公式配布のバイナリを展開し、パスを通しておく。</li>
 </ul>
-<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> /tmp
+
+wget https://downloads.mitmproxy.org/12.1.1/mitmproxy-12.1.1-linux-x86_64.tar.gz
+
+tar xzf mitmproxy-12.1.1-linux-x86_64.tar.gz
+
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> mitmproxy /usr/local/bin/
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> mitmdump /usr/local/bin/
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> mitmweb /usr/local/bin/
 </code></pre>
 <h2>Run on WSL2</h2>
 <ul>
@@ -34,6 +44,14 @@ ip addr
   -LocalPort 8080 `
   -Action Allow
 </code></pre>
+<ul>
+<li>TLS を終端させるには、初回起動時に <code>~/.mitmproxy/</code> に生成されたルート証明書 <code>mitmproxy-ca-cert.cer</code> をクライアント端末へコピーし、ユーザー証明書としてインストールしておく必要がある。</li>
+</ul>
+<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080
+</code></pre>
+<ul>
+<li><code>Shift</code> + <code>F</code> で Flowing 切り替え。</li>
+</ul>
 <h1>VPN</h1>
 <ul>
 <li><a href="https://f-droid.org/en/packages/com.github.dyhkwong.sagernet/">Exclave</a> をインストールし、プロファイルを作成する。</li>
@@ -47,8 +65,10 @@ Server Port: 8080
 <li>VPN を起動し、mitmproxy 側で通信内容が見えることを確認する。</li>
 </ul>
 <h1>URL Mapping</h1>
-<p>URL Mapping によって、プロキシで受け取ったリクエストをどの宛先へ転送するかを対応付ける。
-今回は、ローカルのモックサーバ <code>192.168.0.16:7777</code> へ転送し、偽のレスポンスを返してみる。mitmproxy では、Python スクリプトを利用することで実装できる。</p>
+<p>受け取ったリクエストを特定の宛先へ転送する。</p>
+<ul>
+<li>今回は、ローカルのモックサーバ <code>192.168.0.16:7777</code> へ転送し、偽のレスポンスを返してみる。mitmproxy では、Python で実装できる。</li>
+</ul>
 <h2>Python Script</h2>
 <ul>
 <li>map.py</li>
@@ -83,7 +103,8 @@ REWRITE_SERVER = <span class="hljs-string">"http://192.168.0.16:7777"</span>
         <span class="hljs-built_in">print</span>(e)
 </code></pre>
 <pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080 -s map.py
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】アプリの通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":"$L3"}]]}]}],null,"$L4"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"91B7Sm_iv5d0fnc9D6EBv"}
-3:["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L5","android",{"href":"/tags/android","children":"android"}]]}]}]
-4:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
-8:null
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"mItmkcEDy3dcp8I9jq1hT"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}]]}]}]}]
+5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

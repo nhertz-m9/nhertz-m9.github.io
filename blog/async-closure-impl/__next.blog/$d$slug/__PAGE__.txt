@@ -42,7 +42,7 @@
 
     <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{xs:?}"</span>);
 }
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】AsyncFnMut を GATs で強引に実装してみる"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 5, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"91B7Sm_iv5d0fnc9D6EBv"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】AsyncFnMut を GATs で強引に実装してみる"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 5, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"mItmkcEDy3dcp8I9jq1hT"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

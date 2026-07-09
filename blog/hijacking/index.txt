@@ -8,19 +8,29 @@ a:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmw
 c:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"MetadataBoundary"]
 e:I[68027,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default",1]
 :HL["/_next/static/chunks/0qur5ps326cr1.css","style"]
-0:{"P":null,"c":["","blog","hijacking",""],"q":"","i":false,"f":[[["",{"children":["blog",{"children":[["slug","hijacking","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/13h-0fd.p-1ga.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"const setTheme=e=>document.documentElement.className=e;"}}]}],["$","body",null,{"children":["$","div",null,{"className":"content","children":[["$","header",null,{"children":[["$","div",null,{"className":"main","children":["$","$L2",null,{"href":"/","children":"NativeMethods.txt"}]}],["$","nav",null,{"children":[["$","$L2",null,{"href":"/","children":"Posts"}],["$","$L2",null,{"href":"/tags","children":"Tags"}]]}]]}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"children":[["$","hr",null,{}],["$","a",null,{"href":"/index.xml","children":"RSS"}]]}]]}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],{},null,false,null]},null,false,"$@9"]},null,false,"$@9"]},null,false,null],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],null]}],false]],"m":"$undefined","G":["$e",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"91B7Sm_iv5d0fnc9D6EBv"}
+0:{"P":null,"c":["","blog","hijacking",""],"q":"","i":false,"f":[[["",{"children":["blog",{"children":[["slug","hijacking","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/13h-0fd.p-1ga.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"const setTheme=e=>document.documentElement.className=e;"}}]}],["$","body",null,{"children":["$","div",null,{"className":"content","children":[["$","header",null,{"children":[["$","div",null,{"className":"main","children":["$","$L2",null,{"href":"/","children":"NativeMethods.txt"}]}],["$","nav",null,{"children":[["$","$L2",null,{"href":"/","children":"Posts"}],["$","$L2",null,{"href":"/tags","children":"Tags"}]]}]]}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"children":[["$","hr",null,{}],["$","a",null,{"href":"/index.xml","children":"RSS"}]]}]]}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],{},null,false,null]},null,false,"$@9"]},null,false,"$@9"]},null,false,null],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],null]}],false]],"m":"$undefined","G":["$e",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"mItmkcEDy3dcp8I9jq1hT"}
 f:[]
 9:"$Wf"
-10:Td6a,<h1>前提条件</h1>
+10:T1096,<h1>前提条件</h1>
 <ul>
+<li><a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux 2</a></li>
 <li><a href="https://www.mitmproxy.org/">mitmproxy</a></li>
 <li><a href="https://f-droid.org/en/packages/com.github.dyhkwong.sagernet/">Exclave</a></li>
 </ul>
-<h1>SSL Proxying</h1>
+<h1>SSL Proxying with mitmproxy</h1>
+<h2>Install on WSL2</h2>
 <ul>
-<li>TLS を終端させる場合、<code>~/.mitmproxy/</code> に生成されたルート証明書 <code>mitmproxy-ca-cert.cer</code> をクライアント端末へコピーし、ユーザー証明書としてインストールしておく。</li>
+<li>公式配布のバイナリを展開し、パスを通しておく。</li>
 </ul>
-<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> /tmp
+
+wget https://downloads.mitmproxy.org/12.1.1/mitmproxy-12.1.1-linux-x86_64.tar.gz
+
+tar xzf mitmproxy-12.1.1-linux-x86_64.tar.gz
+
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> mitmproxy /usr/local/bin/
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> mitmdump /usr/local/bin/
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> mitmweb /usr/local/bin/
 </code></pre>
 <h2>Run on WSL2</h2>
 <ul>
@@ -43,6 +53,14 @@ ip addr
   -LocalPort 8080 `
   -Action Allow
 </code></pre>
+<ul>
+<li>TLS を終端させるには、初回起動時に <code>~/.mitmproxy/</code> に生成されたルート証明書 <code>mitmproxy-ca-cert.cer</code> をクライアント端末へコピーし、ユーザー証明書としてインストールしておく必要がある。</li>
+</ul>
+<pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080
+</code></pre>
+<ul>
+<li><code>Shift</code> + <code>F</code> で Flowing 切り替え。</li>
+</ul>
 <h1>VPN</h1>
 <ul>
 <li><a href="https://f-droid.org/en/packages/com.github.dyhkwong.sagernet/">Exclave</a> をインストールし、プロファイルを作成する。</li>
@@ -56,8 +74,10 @@ Server Port: 8080
 <li>VPN を起動し、mitmproxy 側で通信内容が見えることを確認する。</li>
 </ul>
 <h1>URL Mapping</h1>
-<p>URL Mapping によって、プロキシで受け取ったリクエストをどの宛先へ転送するかを対応付ける。
-今回は、ローカルのモックサーバ <code>192.168.0.16:7777</code> へ転送し、偽のレスポンスを返してみる。mitmproxy では、Python スクリプトを利用することで実装できる。</p>
+<p>受け取ったリクエストを特定の宛先へ転送する。</p>
+<ul>
+<li>今回は、ローカルのモックサーバ <code>192.168.0.16:7777</code> へ転送し、偽のレスポンスを返してみる。mitmproxy では、Python で実装できる。</li>
+</ul>
 <h2>Python Script</h2>
 <ul>
 <li>map.py</li>
@@ -92,8 +112,9 @@ REWRITE_SERVER = <span class="hljs-string">"http://192.168.0.16:7777"</span>
         <span class="hljs-built_in">print</span>(e)
 </code></pre>
 <pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080 -s map.py
-</code></pre>5:["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】アプリの通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$10"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":"$L11"}]]}]}]
-11:["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L2","android",{"href":"/tags/android","children":"android"}]]}]}]
+</code></pre>5:["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$10"}}],"$L11","$L12"]}]}]
+11:["$","br",null,{}]
+12:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L2","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 8:null
 d:[["$","title","0",{"children":"NativeMethods.txt"}],["$","meta","1",{"name":"description","content":"blog"}]]

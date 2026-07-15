@@ -1,0 +1,53 @@
+1:"$Sreact.fragment"
+3:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+4:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+2:T98a,<h1>前提条件</h1>
+<ul>
+<li>Oracle VirtualBox</li>
+<li>モニターモードに対応する外付け Wi-Fi アダプタ（本記事では <code>ALFA AWUS036ACH</code> を使用する）</li>
+</ul>
+<h1>Windows</h1>
+<ul>
+<li><a href="https://store.rokland.com/pages/alfa-awus036ach-driver-support-page">ALFA AWUS036ACH Driver &#x26; Support Page</a> より、対応する Windows のドライバをダウンロード。(Windows 11/10: Alfa AWUS036AC/AWUS036ACH/AWUS036EAC Windows 11/10/8/7)</li>
+</ul>
+<h1>Setup Debian on VirtualBox</h1>
+<ul>
+<li>Settings -> USB -> Enable USB Controller</li>
+<li><code>USB 3.0(xHCI)</code> を選択し、<code>Realtek 802.11n NIC</code> を追加。</li>
+</ul>
+<h2>Install driver</h2>
+<pre><code class="hljs language-bash">git <span class="hljs-built_in">clone</span> https://github.com/morrownr/8812au-20210820.git
+<span class="hljs-built_in">cd</span> 8812au-20210820
+
+<span class="hljs-built_in">sudo</span> ./install-driver.sh
+</code></pre>
+<ul>
+<li><code>kernel header cannot be found</code> <a href="https://computingforgeeks.com/install-kernel-headers-kali/">Install Kernel Headers on Kali Linux</a> を参照。</li>
+<li>指示に従い再起動後、無線 LAN アダプタが認識されていることを確認する。</li>
+</ul>
+<pre><code class="hljs language-bash">ip <span class="hljs-built_in">link</span>
+</code></pre>
+<ul>
+<li>ホスト OS のアダプタを使用しない場合、Settings -> Network -> Enable Network Adapter を切っておく。</li>
+</ul>
+<h1>Installation</h1>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt update
+<span class="hljs-built_in">sudo</span> apt install aircrack-ng
+
+aircrack-ng
+</code></pre>
+<h1>Usages</h1>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> airmon-ng check <span class="hljs-built_in">kill</span>
+<span class="hljs-built_in">sudo</span> airmon-ng start [interface]
+
+<span class="hljs-built_in">sudo</span> airodump-ng [interface]
+<span class="hljs-built_in">sudo</span> airodump-ng --bssid [BSSID(access point)] -c [channel] [interface]
+
+<span class="hljs-comment"># `1` is the number of deauths to send, 0 means send them continuously</span>
+<span class="hljs-built_in">sudo</span> aireplay-ng -0 1 -a [BSSID(access point)] -c [BSSID(station)] [interface]
+
+<span class="hljs-built_in">sudo</span> airmon-ng stop [interface]
+systemctl restart NetworkManager
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"Debian on VirtualBox で aircrack-ng を使う"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 15, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L3","aircrack-ng",{"href":"/tags/aircrack-ng","children":"aircrack-ng"}]]}]}]}]]}]}],null,["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"oGXQHDG5oL0VDyolvsdzZ"}
+6:null

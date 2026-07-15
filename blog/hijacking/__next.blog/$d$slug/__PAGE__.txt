@@ -2,7 +2,7 @@
 6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
 7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-2:T1096,<h1>前提条件</h1>
+2:T10a7,<h1>前提条件</h1>
 <ul>
 <li><a href="https://learn.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux 2</a></li>
 <li><a href="https://www.mitmproxy.org/">mitmproxy</a></li>
@@ -76,11 +76,12 @@ Server Port: 8080
 <pre><code class="hljs language-python"><span class="hljs-keyword">from</span> mitmproxy <span class="hljs-keyword">import</span> http
 <span class="hljs-keyword">import</span> requests
 
+TARGET = <span class="hljs-string">"example.app.com"</span>
 REWRITE_SERVER = <span class="hljs-string">"http://192.168.0.16:7777"</span>
 
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">flow: http.HTTPFlow</span>):
     <span class="hljs-keyword">try</span>:
-        <span class="hljs-keyword">if</span> <span class="hljs-string">"api-v1.app.com"</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> flow.request.pretty_host:
+        <span class="hljs-keyword">if</span> TARGET <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> flow.request.pretty_host:
             <span class="hljs-keyword">return</span>
         
         url = REWRITE_SERVER + flow.request.path
@@ -103,7 +104,7 @@ REWRITE_SERVER = <span class="hljs-string">"http://192.168.0.16:7777"</span>
         <span class="hljs-built_in">print</span>(e)
 </code></pre>
 <pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080 -s map.py
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"mItmkcEDy3dcp8I9jq1hT"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】TLS 通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"oGXQHDG5oL0VDyolvsdzZ"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

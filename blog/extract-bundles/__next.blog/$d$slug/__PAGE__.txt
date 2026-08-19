@@ -78,7 +78,7 @@ su
 <span class="hljs-comment"># -> ./output</span>
 python main.py b -i output -o ./6.14.11 -av 6.14.11 -bv 6.14.11 
 <span class="hljs-comment"># .cb files generated</span>
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"9VgPUkhu0UzLNQM3HFGKN"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"8rZe5__WZ7BJLrPDRM3sz"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

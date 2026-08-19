@@ -104,7 +104,7 @@ REWRITE_SERVER = <span class="hljs-string">"http://192.168.0.16:7777"</span>
         <span class="hljs-built_in">print</span>(e)
 </code></pre>
 <pre><code class="hljs language-bash">mitmproxy --listen-host 0.0.0.0 -p 8080 -s map.py
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】TLS 通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DRfmbdgMugqJHLe_Ta9OJ"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Android】TLS 通信をハイジャックする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"July 4, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"9VgPUkhu0UzLNQM3HFGKN"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

@@ -1,0 +1,114 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+3:I[39756,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+4:I[37457,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+a:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"ViewportBoundary"]
+c:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"MetadataBoundary"]
+e:I[68027,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default",1]
+:HL["/_next/static/chunks/0qur5ps326cr1.css","style"]
+0:{"P":null,"c":["","blog","rust-reverse",""],"q":"","i":false,"f":[[["",{"children":["blog",{"children":[["slug","rust-reverse","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/13h-0fd.p-1ga.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"const setTheme=e=>document.documentElement.className=e;"}}]}],["$","body",null,{"children":["$","div",null,{"className":"content","children":[["$","header",null,{"children":[["$","div",null,{"className":"main","children":["$","$L2",null,{"href":"/","children":"NativeMethods.txt"}]}],["$","nav",null,{"children":[["$","$L2",null,{"href":"/","children":"Posts"}],["$","$L2",null,{"href":"/tags","children":"Tags"}]]}]]}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"children":[["$","hr",null,{}],["$","a",null,{"href":"/index.xml","children":"RSS"}]]}]]}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],{},null,false,null]},null,false,"$@9"]},null,false,"$@9"]},null,false,null],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],null]}],false]],"m":"$undefined","G":["$e",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"9VgPUkhu0UzLNQM3HFGKN"}
+f:[]
+9:"$Wf"
+10:T1142,<h1>前提条件</h1>
+<ul>
+<li>Ghidra 10.2.3</li>
+</ul>
+<h1>解析: <code>fn main()</code> を追う</h1>
+<ul>
+<li>Symbol Tree Window から、<code>Functions</code> -> <code>main</code> をクリック。</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> _Argc, <span class="hljs-type">char</span> **_Argv, <span class="hljs-type">char</span> **_Env)</span>
+{
+  <span class="hljs-type">int</span> extraout_EAX;
+  
+  <span class="hljs-built_in">std</span>::rt::lang_start_internal();
+  <span class="hljs-keyword">return</span> extraout_EAX;
+}
+</code></pre>
+<pre><code class="hljs language-asm">LEA ECX, [FUN_14000e030]
+MOV [rsp+30], RCX
+LEA RDX, [PTR_LAB_1400385c8]
+LEA RCX, [rsp+30]
+CALL std::rt::lang_start_internal
+</code></pre>
+<ul>
+<li>
+<p>この <code>main</code> は Rust のランタイム用ラッパ であり、本来の <code>fn main()</code> ではない。実際の呼び出しは <code>std::rt::lang_start_internal()</code> 内で行われている。</p>
+</li>
+<li>
+<p><code>FUN_14000e030</code> が <code>fn main()</code> の本体を指す関数ポインタである。<code>ECX</code> (<code>RCX</code> の下位 32 bit) に格納される。</p>
+</li>
+<li>
+<p><code>PTR_LAB_1400385c8</code> がクロージャの vtable である。<code>RDX</code> へ格納される。</p>
+</li>
+<li>
+<p><code>fn main()</code> を追いたいならば、<code>FUN_14000e030</code> へジャンプ。Ghidra が誤ってコード領域をデータとして認識している場合は、<code>Right Click</code> -> <code>Create Function</code> で関数として登録しなおす。</p>
+</li>
+</ul>
+<h1>補足: <code>fn main()</code> はどのように実行されるのか</h1>
+<ul>
+<li><code>std::rt::lang_start_internal()</code> をクリック。</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">void</span> __cdecl <span class="hljs-built_in">std</span>::rt::lang_start_internal(<span class="hljs-type">void</span>)
+{
+  <span class="hljs-comment">// init</span>
+  
+  local_50 = in_RCX;
+  local_48 = in_RDX;
+
+  <span class="hljs-comment">// extra lines...</span>
+
+  <span class="hljs-keyword">if</span> (local_b0[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>) {
+    thread::Thread::new();
+    sys_common::thread_info::<span class="hljs-built_in">set</span>();
+
+    iVar4 = (**(code **)(local_48 + <span class="hljs-number">0x28</span>))(local_50);
+
+    local_48 = (longlong)iVar4;
+    <span class="hljs-keyword">if</span> (DAT_140057178 != <span class="hljs-number">3</span>) {
+      local_39 = <span class="hljs-number">1</span>;
+      local_c0 = &#x26;local_39;
+      sys_common::once::<span class="hljs-built_in">queue</span>::Once::call();
+    }
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-comment">// extra lines...</span>
+}
+</code></pre>
+<pre><code class="hljs language-c">(**(code **)(local_48 + <span class="hljs-number">0x28</span>))(local_50);
+</code></pre>
+<ul>
+<li>
+<p>上で代入されている通り、<code>local_48</code> には vtable が、<code>local_50</code> には <code>fn main()</code> の関数ポインタが格納されている。</p>
+</li>
+<li>
+<p>Rust の <code>main</code> は内部的には <code>impl FnOnce() -> i32</code> として扱われる。概念的にはこのように。</p>
+</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Main</span>;
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">FnOnce</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_once</span>(<span class="hljs-keyword">self</span>) {　<span class="hljs-title function_ invoke__">user_main</span>();　}
+}
+</code></pre>
+<ul>
+<li><code>call_once</code> は vtable に登録されている。vtable の構造は以下のようなイメージ。</li>
+</ul>
+<pre><code>+0x00 drop: fn()
++0x08 size: usize
++0x10 align: usize
+...
+
++0x28 call_once: fn()
+</code></pre>
+<ul>
+<li>つまり、<code>local_48 + 0x28</code> で <code>call_once</code> を指定し、<code>local_50</code> に格納された <code>main</code> 関数ポインタを呼んでいる。</li>
+</ul>5:["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】実行バイナリ解析メモ"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 20, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$10"}}],"$L11","$L12"]}]}]
+11:["$","br",null,{}]
+12:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L2","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+d:[["$","title","0",{"children":"NativeMethods.txt"}],["$","meta","1",{"name":"description","content":"blog"}]]

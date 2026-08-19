@@ -1,0 +1,104 @@
+1:"$Sreact.fragment"
+6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+2:T1142,<h1>前提条件</h1>
+<ul>
+<li>Ghidra 10.2.3</li>
+</ul>
+<h1>解析: <code>fn main()</code> を追う</h1>
+<ul>
+<li>Symbol Tree Window から、<code>Functions</code> -> <code>main</code> をクリック。</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> _Argc, <span class="hljs-type">char</span> **_Argv, <span class="hljs-type">char</span> **_Env)</span>
+{
+  <span class="hljs-type">int</span> extraout_EAX;
+  
+  <span class="hljs-built_in">std</span>::rt::lang_start_internal();
+  <span class="hljs-keyword">return</span> extraout_EAX;
+}
+</code></pre>
+<pre><code class="hljs language-asm">LEA ECX, [FUN_14000e030]
+MOV [rsp+30], RCX
+LEA RDX, [PTR_LAB_1400385c8]
+LEA RCX, [rsp+30]
+CALL std::rt::lang_start_internal
+</code></pre>
+<ul>
+<li>
+<p>この <code>main</code> は Rust のランタイム用ラッパ であり、本来の <code>fn main()</code> ではない。実際の呼び出しは <code>std::rt::lang_start_internal()</code> 内で行われている。</p>
+</li>
+<li>
+<p><code>FUN_14000e030</code> が <code>fn main()</code> の本体を指す関数ポインタである。<code>ECX</code> (<code>RCX</code> の下位 32 bit) に格納される。</p>
+</li>
+<li>
+<p><code>PTR_LAB_1400385c8</code> がクロージャの vtable である。<code>RDX</code> へ格納される。</p>
+</li>
+<li>
+<p><code>fn main()</code> を追いたいならば、<code>FUN_14000e030</code> へジャンプ。Ghidra が誤ってコード領域をデータとして認識している場合は、<code>Right Click</code> -> <code>Create Function</code> で関数として登録しなおす。</p>
+</li>
+</ul>
+<h1>補足: <code>fn main()</code> はどのように実行されるのか</h1>
+<ul>
+<li><code>std::rt::lang_start_internal()</code> をクリック。</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">void</span> __cdecl <span class="hljs-built_in">std</span>::rt::lang_start_internal(<span class="hljs-type">void</span>)
+{
+  <span class="hljs-comment">// init</span>
+  
+  local_50 = in_RCX;
+  local_48 = in_RDX;
+
+  <span class="hljs-comment">// extra lines...</span>
+
+  <span class="hljs-keyword">if</span> (local_b0[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>) {
+    thread::Thread::new();
+    sys_common::thread_info::<span class="hljs-built_in">set</span>();
+
+    iVar4 = (**(code **)(local_48 + <span class="hljs-number">0x28</span>))(local_50);
+
+    local_48 = (longlong)iVar4;
+    <span class="hljs-keyword">if</span> (DAT_140057178 != <span class="hljs-number">3</span>) {
+      local_39 = <span class="hljs-number">1</span>;
+      local_c0 = &#x26;local_39;
+      sys_common::once::<span class="hljs-built_in">queue</span>::Once::call();
+    }
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-comment">// extra lines...</span>
+}
+</code></pre>
+<pre><code class="hljs language-c">(**(code **)(local_48 + <span class="hljs-number">0x28</span>))(local_50);
+</code></pre>
+<ul>
+<li>
+<p>上で代入されている通り、<code>local_48</code> には vtable が、<code>local_50</code> には <code>fn main()</code> の関数ポインタが格納されている。</p>
+</li>
+<li>
+<p>Rust の <code>main</code> は内部的には <code>impl FnOnce() -> i32</code> として扱われる。概念的にはこのように。</p>
+</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Main</span>;
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">FnOnce</span> <span class="hljs-keyword">for</span> <span class="hljs-title class_">Main</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_once</span>(<span class="hljs-keyword">self</span>) {　<span class="hljs-title function_ invoke__">user_main</span>();　}
+}
+</code></pre>
+<ul>
+<li><code>call_once</code> は vtable に登録されている。vtable の構造は以下のようなイメージ。</li>
+</ul>
+<pre><code>+0x00 drop: fn()
++0x08 size: usize
++0x10 align: usize
+...
+
++0x28 call_once: fn()
+</code></pre>
+<ul>
+<li>つまり、<code>local_48 + 0x28</code> で <code>call_once</code> を指定し、<code>local_50</code> に格納された <code>main</code> 関数ポインタを呼んでいる。</li>
+</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】実行バイナリ解析メモ"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 20, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"9VgPUkhu0UzLNQM3HFGKN"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
+5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

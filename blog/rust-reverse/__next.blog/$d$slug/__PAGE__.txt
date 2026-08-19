@@ -97,7 +97,7 @@ CALL std::rt::lang_start_internal
 </code></pre>
 <ul>
 <li>つまり、<code>local_48 + 0x28</code> で <code>call_once</code> を指定し、<code>local_50</code> に格納された <code>main</code> 関数ポインタを呼んでいる。</li>
-</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】実行バイナリ解析メモ"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 20, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"8rZe5__WZ7BJLrPDRM3sz"}
+</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】実行バイナリ解析メモ"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 20, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"OMqvEq-hzrS-wNxo0KvDM"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

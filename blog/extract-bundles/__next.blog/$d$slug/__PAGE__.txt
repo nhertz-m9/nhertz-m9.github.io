@@ -2,17 +2,17 @@
 6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
 7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-2:Tf63,<h1>前提条件</h1>
+2:Tf69,<h1>前提条件</h1>
 <ul>
 <li>公式にバンドルが配信されているバージョンであること</li>
 </ul>
 <h1>How to extract</h1>
 <ul>
 <li>
-<p>現在、配信されるバンドルファイルは <code>100MB</code> ごとに分割されており、それぞれ <code>6.14.11_0.bundle</code> <code>6.14.11_1.bundle</code> ... と命名され、<code>/data/data/moe.low.arc/files/dltemp</code> に配置される。ただし、ダウンロード中の拡張子は <code>.bundle.tmp</code></p>
+<p>現在、配信されるバンドルファイルは <code>100MB</code> ごとに分割されており、それぞれ <code>6.14.11_0.bundle</code> <code>6.14.11_1.bundle</code> ...（ダウンロード中の拡張子は <code>.bundle.tmp</code>） と命名され、<code>/data/data/moe.low.arc/files/dltemp</code> に配置される。</p>
 </li>
 <li>
-<p>バンドルのメタデータを含む <code>6.14.11.json</code> も必要。</p>
+<p>その他、バンドルのメタデータを含む <code>6.14.11.json</code> も必要。</p>
 </li>
 <li>
 <p>ゲーム内で上記のファイルをダウンロードし終えると、ファイルの検証に移り、これらのファイルはすぐに削除されてしまう。（アプリ本体にマージされる）</p>
@@ -78,7 +78,7 @@ su
 <span class="hljs-comment"># -> ./output</span>
 python main.py b -i output -o ./6.14.11 -av 6.14.11 -bv 6.14.11 
 <span class="hljs-comment"># .cb files generated</span>
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"OMqvEq-hzrS-wNxo0KvDM"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"7WYebIu9wYx4eaENb91BO"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

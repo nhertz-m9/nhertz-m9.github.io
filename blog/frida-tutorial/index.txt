@@ -1,0 +1,181 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+3:I[39756,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+4:I[37457,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+6:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+a:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"ViewportBoundary"]
+c:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"MetadataBoundary"]
+e:I[68027,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default",1]
+:HL["/_next/static/chunks/0qur5ps326cr1.css","style"]
+0:{"P":null,"c":["","blog","frida-tutorial",""],"q":"","i":false,"f":[[["",{"children":["blog",{"children":[["slug","frida-tutorial","d",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/13h-0fd.p-1ga.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ja","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"const setTheme=e=>document.documentElement.className=e;"}}]}],["$","body",null,{"children":["$","div",null,{"className":"content","children":[["$","header",null,{"children":[["$","div",null,{"className":"main","children":["$","$L2",null,{"href":"/","children":"NativeMethods.txt"}]}],["$","nav",null,{"children":[["$","$L2",null,{"href":"/","children":"Posts"}],["$","$L2",null,{"href":"/tags","children":"Tags"}]]}]]}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"children":[["$","hr",null,{}],["$","a",null,{"href":"/index.xml","children":"RSS"}]]}]]}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],{},null,false,null]},null,false,"$@9"]},null,false,"$@9"]},null,false,null],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$7",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],null]}],false]],"m":"$undefined","G":["$e",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0qur5ps326cr1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"7WYebIu9wYx4eaENb91BO"}
+f:[]
+9:"$Wf"
+10:T2aa2,<h1>前提条件</h1>
+<ul>
+<li>Android Emulator (Android 15.0 ("VanillaIceCream") | x86_64)</li>
+<li>frida-server-17.7.3-android-x86_64</li>
+<li><a href="https://github.com/OWASP/mastg/blob/master/Crackmes/Android/Level_01/UnCrackable-Level1.apk">UnCrackable-Level1</a></li>
+</ul>
+<h1>準備</h1>
+<ul>
+<li>エミュレータの CPU アーキテクチャは以下のコマンドで確認できる。</li>
+</ul>
+<pre><code class="hljs language-bash">adb shell getprop ro.product.cpu.abi <span class="hljs-comment"># -> x86_64</span>
+</code></pre>
+<ul>
+<li>使用している Frida クライアントと同じバージョン、エミュレータと同じアーキテクチャの <a href="https://github.com/frida/frida/releases">frida-server</a> を用意する。（本記事では <code>17.7.3</code>）</li>
+</ul>
+<pre><code class="hljs language-bash">frida --version <span class="hljs-comment"># -> 17.7.3</span>
+</code></pre>
+<ul>
+<li>解凍後、<code>/data/local/tmp/</code> へ設置し、起動。</li>
+</ul>
+<pre><code class="hljs language-bash">adb push frida-server-17.7.3-android-x86_64 /data/local/tmp/frida-server
+
+adb shell
+<span class="hljs-built_in">chmod</span> 755 /data/local/tmp/frida-server
+/data/local/tmp/frida-server &#x26;
+</code></pre>
+<ul>
+<li><code>UnCrackable-Level1.apk</code> をエミュレータ上へドラッグ＆ドロップしてインストールしておく。</li>
+</ul>
+<h1>動的解析</h1>
+<ul>
+<li>起動中のプロセスを列挙する。解析対象のプロセス名 <code>Uncrackable1</code> を確認。</li>
+</ul>
+<pre><code class="hljs language-bash">frida-ps -Uai
+</code></pre>
+<ul>
+<li>Frida から対象プロセスへ接続できることを確認。</li>
+</ul>
+<pre><code class="hljs language-bash">frida -U -n Uncrackable1
+[Android Emulator 5554::Uncrackable1 ]->
+</code></pre>
+<ul>
+<li>本記事では、<code>VERIFY</code> ボタン押下時のキー検証をバイパスし、任意の入力に対して常に <code>true</code> を返すように動的にパッチを当ててみる。</li>
+</ul>
+<h2>ロード済みのクラスを列挙</h2>
+<ul>
+<li>Frida の <a href="https://frida.re/docs/javascript-api/#java">Java API</a> を使用する。</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">enumerateLoadedClasses</span>({
+        <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">name</span>) {
+            <span class="hljs-comment">// exclude built-in classes</span>
+            <span class="hljs-keyword">if</span> (name.<span class="hljs-title function_">toLowerCase</span>().<span class="hljs-title function_">includes</span>(<span class="hljs-string">"uncrackable"</span>)) {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name);
+            }
+        },
+        <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"done"</span>);
+        }
+    });
+});
+</code></pre>
+<pre><code class="hljs language-bash">sg.vantagepoint.uncrackable1.MainActivity<span class="hljs-variable">$2</span>
+sg.vantagepoint.uncrackable1.MainActivity
+sg.vantagepoint.uncrackable1.a
+<span class="hljs-keyword">done</span>
+</code></pre>
+<ul>
+<li><code>onComplete</code> を指定しないとエラーを吐く。</li>
+</ul>
+<h2>クラスのメソッドを列挙</h2>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> C = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">"sg.vantagepoint.uncrackable1.a"</span>);
+
+    C.<span class="hljs-property">class</span>.<span class="hljs-title function_">getDeclaredMethods</span>().<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">m</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-title function_">toString</span>());
+    });
+});
+</code></pre>
+<pre><code class="hljs language-bash">public static boolean sg.vantagepoint.uncrackable1.a.a(java.lang.String)
+public static byte[] sg.vantagepoint.uncrackable1.a.b(java.lang.String)
+</code></pre>
+<ul>
+<li><code>sg.vantagepoint.uncrackable1.a.a</code> は <code>boolean</code> を返しており、キー検証用のメソッドである可能性が高いので、このメソッドの呼び出しをフックしてみる。</li>
+</ul>
+<h2>メソッド呼び出しをフック</h2>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> C = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">"sg.vantagepoint.uncrackable1.a"</span>);
+
+    C.<span class="hljs-property">a</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">"java.lang.String"</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"[+] called"</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"[+] length = "</span> + s.<span class="hljs-property">length</span>);
+
+        <span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">a</span>(s);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"[+] result = "</span> + result);
+
+        <span class="hljs-keyword">return</span> result;
+    };
+});
+</code></pre>
+<ul>
+<li>試しにテキストボックスに <code>SECRET-KEY</code> と入力し、<code>VERIFY</code> を押してみると、出力は以下となる。</li>
+</ul>
+<pre><code class="hljs language-bash">[+] called
+[+] length = 10
+[+] result = <span class="hljs-literal">false</span>
+</code></pre>
+<ul>
+<li>この結果から、この関数がテキストボックスの入力内容を受け取り、キー検証していると推定できる。</li>
+</ul>
+<h2>検証をバイパス</h2>
+<ul>
+<li>先ほどと同様の方法で、メソッドの戻り値を書き換えることができる。具体的な検証の内部処理を知る必要はない。</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> C = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">"sg.vantagepoint.uncrackable1.a"</span>);
+
+    C.<span class="hljs-property">a</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">"java.lang.String"</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// bypassing key verification</span>
+    };
+});
+</code></pre>
+<ul>
+<li>無事に検証処理を上書きすることに成功した。</li>
+</ul>
+<h1>Tips</h1>
+<h2>コールスタックを表示</h2>
+<ul>
+<li>あるメソッドが誰から呼ばれたかを特定する。</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> C =
+        <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">"sg.vantagepoint.uncrackable1.a"</span>);
+
+    C.<span class="hljs-property">a</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">"java.lang.String"</span>).<span class="hljs-property">implementation</span> =
+        <span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"[+] called"</span>);
+
+            <span class="hljs-keyword">const</span> <span class="hljs-title class_">Log</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">"android.util.Log"</span>);
+            <span class="hljs-keyword">const</span> <span class="hljs-title class_">Exception</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">"java.lang.Exception"</span>);
+
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
+                <span class="hljs-title class_">Log</span>.<span class="hljs-title function_">getStackTraceString</span>(<span class="hljs-title class_">Exception</span>.$new())
+            );
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">a</span>(s);
+        };
+});
+</code></pre>
+<pre><code class="hljs language-bash">[+] called
+java.lang.Exception
+        at sg.vantagepoint.uncrackable1.a.a(Native Method)
+        at sg.vantagepoint.uncrackable1.MainActivity.verify(Unknown Source:26)
+        at sg.vantagepoint.uncrackable1.MainActivity.verify(Native Method)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at android.view.View<span class="hljs-variable">$DeclaredOnClickListener</span>.onClick(View.java:6769)
+        ...
+</code></pre>
+<h2>スクリプトをロードして起動＆アタッチ</h2>
+<ul>
+<li>起動直後の処理を追う場合。</li>
+</ul>
+<pre><code class="hljs language-bash">frida -U -f com.example.app -l script.js
+</code></pre>5:["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Frida】エミュレータ上で動的解析"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 25, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$10"}}],"$L11","$L12"]}]}]
+11:["$","br",null,{}]
+12:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L2","android",{"href":"/tags/android","children":"android"}],["$","$L2","frida",{"href":"/tags/frida","children":"frida"}]]}]}]}]
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+8:null
+d:[["$","title","0",{"children":"NativeMethods.txt"}],["$","meta","1",{"name":"description","content":"blog"}]]

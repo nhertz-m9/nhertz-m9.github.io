@@ -1,0 +1,44 @@
+1:"$Sreact.fragment"
+3:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+4:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+2:Tb3e,<ul>
+<li><strong>この記事は編集途中である。</strong></li>
+<li>基本的な手順は <a href="../frida-tutorial/">【frida-server】エミュレータ上で動的解析</a> を参照せよ。</li>
+</ul>
+<h1>Interceptor, Stalker</h1>
+<ul>
+<li>
+<p><a href="https://frida.re/docs/javascript-api/#interceptor">Interceptor</a> を使用して特定の関数呼び出しを傍受できる。特定 API 呼び出しの引数や戻り値、呼び出し元の確認、関数の置き換えなど（<code>Interceptor.replace</code>）を行う。</p>
+</li>
+<li>
+<p><a href="https://frida.re/docs/javascript-api/#stalker">Stalker</a> によって、あるスレッドが実際にどのようなコード経路を通ったかを命令レベルで追跡する。<code>Interceptor</code> よりも CPU 負荷が高く、ログも大量であるため、長時間のトレースには向かない。</p>
+</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(ptr, {
+    <span class="hljs-title function_">onEnter</span>(<span class="hljs-params">args</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"[+] called"</span>);
+
+        <span class="hljs-title class_">Stalker</span>.<span class="hljs-title function_">follow</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">threadId</span>, {
+            <span class="hljs-attr">events</span>: {
+                <span class="hljs-attr">call</span>: <span class="hljs-literal">true</span>
+            },
+            <span class="hljs-title function_">onCallSummary</span>(<span class="hljs-params">summary</span>) {
+            }
+        });
+    },
+    <span class="hljs-title function_">onLeave</span>(<span class="hljs-params">ret</span>) {
+        <span class="hljs-title class_">Stalker</span>.<span class="hljs-title function_">unfollow</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">threadId</span>);
+        <span class="hljs-title class_">Stalker</span>.<span class="hljs-title function_">garbageCollect</span>();
+    }
+});
+</code></pre>
+<h1>動的解析</h1>
+<h2>ロード済み <code>.so</code> の列挙</h2>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Process</span>.<span class="hljs-title function_">attachModuleObserver</span>({
+    <span class="hljs-title function_">onAdded</span>(<span class="hljs-params"><span class="hljs-variable language_">module</span></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"[+] "</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span>);
+    }
+});
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Frida】ネイティブライブラリを動的解析"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 25, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L3","android",{"href":"/tags/android","children":"android"}],["$","$L3","frida",{"href":"/tags/frida","children":"frida"}]]}]}]}]]}]}],null,["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"7WYebIu9wYx4eaENb91BO"}
+6:null

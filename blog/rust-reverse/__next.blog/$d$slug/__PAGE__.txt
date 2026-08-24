@@ -2,7 +2,7 @@
 6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
 7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-2:T1130,<h1>前提条件</h1>
+2:T10f0,<h1>前提条件</h1>
 <ul>
 <li>Ghidra 10.2.3</li>
 </ul>
@@ -37,10 +37,9 @@ CALL std::rt::lang_start_internal
 <li>
 <p><code>fn main()</code> を追いたいならば、<code>FUN_14000e030</code> へジャンプ。Ghidra が誤ってコード領域をデータとして認識している場合は、<code>Right Click</code> -> <code>Create Function</code> で関数として登録しなおす。</p>
 </li>
-</ul>
-<h1>解析: <code>lang_start_internal()</code> を追う</h1>
-<ul>
-<li><code>std::rt::lang_start_internal()</code> をクリック。</li>
+<li>
+<p><code>std::rt::lang_start_internal()</code> をクリック。</p>
+</li>
 </ul>
 <pre><code class="hljs language-c"><span class="hljs-type">void</span> __cdecl <span class="hljs-built_in">std</span>::rt::lang_start_internal(<span class="hljs-type">void</span>)
 {
@@ -97,7 +96,7 @@ CALL std::rt::lang_start_internal
 </code></pre>
 <ul>
 <li>つまり、<code>local_48 + 0x28</code> で <code>call_once</code> を指定し、<code>local_50</code> に格納された <code>main</code> 関数ポインタを呼んでいる。</li>
-</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】実行バイナリ解析メモ"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 20, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"7WYebIu9wYx4eaENb91BO"}
+</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】実行バイナリ解析メモ"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 20, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"fvB_JwO-j-KWIbJxDR2Ek"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

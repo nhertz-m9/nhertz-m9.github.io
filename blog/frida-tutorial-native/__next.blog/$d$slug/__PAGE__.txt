@@ -1,10 +1,15 @@
 1:"$Sreact.fragment"
-3:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
-4:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
-5:"$Sreact.suspense"
-2:Tb3e,<ul>
-<li><strong>この記事は編集途中である。</strong></li>
+6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+2:T2d6d,<ul>
 <li>基本的な手順は <a href="../frida-tutorial/">【frida-server】エミュレータ上で動的解析</a> を参照せよ。</li>
+</ul>
+<h1>前提条件</h1>
+<ul>
+<li>Android Emulator (Android 15.0 ("VanillaIceCream") | x86_64)</li>
+<li>frida-server-17.7.3-android-x86_64</li>
+<li><a href="https://github.com/OWASP/mastg/blob/master/Crackmes/Android/Level_03/UnCrackable-Level3.apk">UnCrackable-Level3</a></li>
 </ul>
 <h1>Interceptor, Stalker</h1>
 <ul>
@@ -34,11 +39,156 @@
 });
 </code></pre>
 <h1>動的解析</h1>
+<h2>Frida 検知をバイパス</h2>
+<ul>
+<li><code>UnCrackable-Level3</code> にアタッチを試みるが、以下のログを残してすぐにアプリが強制終了してしまう。</li>
+</ul>
+<pre><code>Process crashed: Trace/BPT trap
+
+Build fingerprint: 'google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys'
+Revision: '0'
+ABI: 'x86_64'
+
+...
+
+signal 6 (SIGABRT), code -6 (SI_TKILL), fault addr ...
+
+...
+
+backtrace:
+      #00 pc 00000000000cd1f7  /apex/com.android.runtime/lib64/bionic/libc.so (tgkill+7) (BuildId: eb58b4d427279994f00c0e1818477e4f)
+      #01 pc 000000000000374a  /data/app/~~0RLZYJMzLHJfUnEPD9RcPw==/owasp.mstg.uncrackable3-vE1Y9aOidzBtZLP9__KAog==/lib/x86_64/libfoo.so (goodbye()+10) (BuildId: 8285b51f43ea00d9cd58b23d04d22c5dbed2d662)
+      #02 pc 000000000000389a  /data/app/~~0RLZYJMzLHJfUnEPD9RcPw==/owasp.mstg.uncrackable3-vE1Y9aOidzBtZLP9__KAog==/lib/x86_64/libfoo.so (BuildId: 8285b51f43ea00d9cd58b23d04d22c5dbed2d662)
+      #03 pc 000000000006d62a  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+58) (BuildId: eb58b4d427279994f00c0e1818477e4f)
+      #04 pc 0000000000060348  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+56) (BuildId: eb58b4d427279994f00c0e1818477e4f)
+</code></pre>
+<ul>
+<li>
+<p>バックトレースを追うと、<code>libfoo.so</code> の <code>goodbye()</code> が <code>libc.so</code> の <code>tgkill</code> を呼び出し、自身を <code>SIGABRT</code> で終了させていると読み取れる。</p>
+</li>
+<li>
+<p>具体的な検知処理を知るため、apk を展開し、該当するライブラリを Ghidra を使って解析していく。</p>
+</li>
+</ul>
+<pre><code class="hljs language-bash">apktool d UnCrackable-Level3.apk
+</code></pre>
+<h2>Ghidra で静的解析</h2>
+<ul>
+<li>
+<p>Search -> Program Text から All Fields を対象に <code>frida</code> を検索してみると、<code>s_frida_00103b62</code> として文字列 <code>frida</code> が見つかる。</p>
+</li>
+<li>
+<p>xref から、その参照元である <code>FUN_001037c0</code> に辿り着く。</p>
+</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">void</span> <span class="hljs-title function_">FUN_001037c0</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>
+
+{
+  <span class="hljs-comment">// extra lines...</span>
+
+  __stream = fopen(<span class="hljs-string">"/proc/self/maps"</span>,<span class="hljs-string">"r"</span>);
+  <span class="hljs-keyword">if</span> (__stream == (FILE *)<span class="hljs-number">0x0</span>) {
+    pcVar1 = <span class="hljs-string">"Error opening /proc/self/maps! Terminating..."</span>;
+  }
+  <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">do</span> {
+      <span class="hljs-keyword">while</span>( <span class="hljs-literal">true</span> ) {
+        pcVar1 = fgets(acStack_238, <span class="hljs-number">0x200</span>, __stream);
+        <span class="hljs-keyword">if</span> (pcVar1 != (<span class="hljs-type">char</span> *)<span class="hljs-number">0x0</span>) <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-comment">// extra lines...</span>
+      }
+      pcVar1 = <span class="hljs-built_in">strstr</span>(acStack_238, <span class="hljs-string">"frida"</span>);
+      <span class="hljs-keyword">if</span> (pcVar1 != (<span class="hljs-type">char</span> *)<span class="hljs-number">0x0</span>) <span class="hljs-keyword">break</span>;
+
+      pcVar1 = <span class="hljs-built_in">strstr</span>(acStack_238, <span class="hljs-string">"xposed"</span>);
+    } <span class="hljs-keyword">while</span> (pcVar1 == (<span class="hljs-type">char</span> *)<span class="hljs-number">0x0</span>);
+    pcVar1 = <span class="hljs-string">"Tampering detected! Terminating..."</span>;
+  }
+  goodbye(); <span class="hljs-comment">// -> tgkill</span>
+
+  <span class="hljs-comment">// extra lines...</span>
+}
+</code></pre>
+<ul>
+<li>
+<p>大まかに処理を追っていくと、関数冒頭で <code>/proc/self/maps</code> を開き、その内容を少し先の <code>fgets</code> で <code>acStack_238</code> に格納している。<code>strstr</code> で <code>acStack_238</code> に文字列 <code>frida</code> が含まれるかを判定し、含まれる場合はループから抜けて強制終了する。</p>
+</li>
+<li>
+<p>Frida の agent が注入されると、プロセスの memory map に Frida 関連の名前が現れることを利用した、一般的な Frida 検知だ。</p>
+</li>
+<li>
+<p>今回は、これを回避するにあたって、<code>Interceptor</code> で <code>strstr</code> の呼び出しを監視し、第二引数 <code>strSearch</code> に <code>frida</code> を含む場合に戻り値を <code>0</code> に書き換えるという方法をとってみる。</p>
+</li>
+</ul>
+<pre><code class="hljs language-c"><span class="hljs-type">char</span> *<span class="hljs-title function_">strstr</span><span class="hljs-params">(
+   <span class="hljs-type">const</span> <span class="hljs-type">char</span> *str,
+   <span class="hljs-type">const</span> <span class="hljs-type">char</span> *strSearch
+)</span>; 
+</code></pre>
+<ul>
+<li>hook.js</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> strstr = <span class="hljs-title class_">Process</span>.<span class="hljs-title function_">getModuleByName</span>(<span class="hljs-string">"libc.so"</span>).<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">"strstr"</span>);
+<span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(strstr, {
+
+    <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">args</span>) {
+
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">target</span> = args[<span class="hljs-number">1</span>];
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">frida</span> = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">var</span> target = <span class="hljs-variable language_">this</span>.<span class="hljs-property">target</span>.<span class="hljs-title function_">readUtf8String</span>();
+
+        <span class="hljs-keyword">if</span> (target.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"frida"</span>)) {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">frida</span> = <span class="hljs-number">1</span>;
+        }
+    },
+    <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">ret</span>) {
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">frida</span> === <span class="hljs-number">1</span>) {
+            ret.<span class="hljs-title function_">replace</span>(<span class="hljs-number">0</span>);
+        }
+        <span class="hljs-keyword">return</span> ret;
+    }
+});
+</code></pre>
+<ul>
+<li><code>this.frida</code> でこの呼び出しが Frida を検知する目的かどうかを判断している。</li>
+</ul>
+<pre><code class="hljs language-bash">frida -U -f owasp.mstg.uncrackable3 -l hook.js
+</code></pre>
+<ul>
+<li>強制終了を回避することを確認。</li>
+</ul>
+<h2>キー検証をバイパス</h2>
+<ul>
+<li>
+<p>前回と同様に Java API を使って検証用の関数を探す。</p>
+</li>
+<li>
+<p><code>public boolean CodeCheck.check_code(java.lang.String)</code> が怪しい。</p>
+</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> C = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">"sg.vantagepoint.uncrackable3.CodeCheck"</span>);
+
+    C.<span class="hljs-property">check_code</span>.<span class="hljs-title function_">overload</span>(<span class="hljs-string">"java.lang.String"</span>).<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">s</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    };
+});
+</code></pre>
+<ul>
+<li>無事、検証処理の上書きに成功。</li>
+</ul>
+<h1>Tips</h1>
 <h2>ロード済み <code>.so</code> の列挙</h2>
 <pre><code class="hljs language-js"><span class="hljs-title class_">Process</span>.<span class="hljs-title function_">attachModuleObserver</span>({
     <span class="hljs-title function_">onAdded</span>(<span class="hljs-params"><span class="hljs-variable language_">module</span></span>) {
         <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"[+] "</span> + <span class="hljs-variable language_">module</span>.<span class="hljs-property">name</span>);
     }
 });
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Frida】ネイティブライブラリを動的解析"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 25, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L3","android",{"href":"/tags/android","children":"android"}],["$","$L3","frida",{"href":"/tags/frida","children":"frida"}]]}]}]}]]}]}],null,["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"fvB_JwO-j-KWIbJxDR2Ek"}
-6:null
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Frida】ネイティブライブラリを解析する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 26, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"xNYpItv_lFVbEL8RLeWgS"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}],["$","$L6","frida",{"href":"/tags/frida","children":"frida"}]]}]}]}]
+5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

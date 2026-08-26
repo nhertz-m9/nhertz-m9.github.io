@@ -2,38 +2,113 @@
 6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
 7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-2:Tf5b,<pre><code class="hljs language-rust">
-<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">cx</span> = std::task::Context::<span class="hljs-title function_ invoke__">from_waker</span>(std::task::Waker::<span class="hljs-title function_ invoke__">noop</span>());
-<span class="hljs-keyword">let</span> <span class="hljs-variable">_</span> = std::pin::pin!(_async_block_closure_test()).<span class="hljs-title function_ invoke__">poll</span>(&#x26;<span class="hljs-keyword">mut</span> cx);
+2:T21c8,<h1>前提条件</h1>
+<ul>
+<li>rustc 1.95.0-nightly</li>
+</ul>
+<h1>背景</h1>
+<ul>
+<li>以下は、クロージャの戻り値に <code>Future</code> を持たせたコードで、これはコンパイルに失敗する。</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">xs</span> = <span class="hljs-built_in">vec!</span>[];
 
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">_async_block_closure_test</span>() {
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">cls</span> = |arg| <span class="hljs-keyword">async</span> {
+    xs.<span class="hljs-title function_ invoke__">push</span>(arg);
+};
+<span class="hljs-title function_ invoke__">cls</span>(<span class="hljs-number">42</span>).<span class="hljs-keyword">await</span>;
+</code></pre>
+<pre><code>captured variable cannot escape `FnMut` closure body
+`FnMut` closures only have access to their captured variables while they are executing...
+...therefore, they cannot allow references to captured variables to escape
+</code></pre>
+<ul>
+<li>
+<p><code>cls</code> の返す <code>Future</code> は <code>cls</code> 由来の <code>&#x26;mut xs</code> をキャプチャしているが、従来の <code>call_mut</code> の制約ではこれを表現できなかった。</p>
+</li>
+<li>
+<p>このままでは、<code>Future</code> 生存中に <code>cls</code> が drop した場合、 <code>Future</code> の参照先が消滅してしまう。</p>
+</li>
+<li>
+<p>c.f. <code>FnMut since 1.0.0</code> の実装。</p>
+</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">trait</span> <span class="hljs-title class_">FnMut</span>&#x3C;Args>: <span class="hljs-built_in">FnOnce</span>&#x3C;Args> {
 
-    <span class="hljs-keyword">trait</span> <span class="hljs-title class_">LendingFnMut</span>&#x3C;Arg> {
-        <span class="hljs-keyword">type</span> <span class="hljs-title class_">LendingOutput</span>&#x3C;<span class="hljs-symbol">'t</span>>
-        <span class="hljs-keyword">where</span>
-            <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'t</span>;
+    <span class="hljs-keyword">extern</span> <span class="hljs-string">"rust-call"</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_mut</span>(
+        &#x26;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>,
+        args: Args,
+    ) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::Output;
+}
+</code></pre>
+<ul>
+<li>
+<p>この問題を解決するため、Generic Associated Types と呼ばれる型システムの拡張により、クロージャが返す <code>Future</code> が、そのクロージャ自身を借用していることを表現できるようになった。</p>
+</li>
+<li>
+<p>c.f. <code>AsyncFnMut since 1.85.0</code> の実装。</p>
+</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">trait</span> <span class="hljs-title class_">AsyncFnMut</span>&#x3C;Args>: AsyncFnOnce&#x3C;Args> {
 
-        <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_mut</span>&#x3C;<span class="hljs-symbol">'t</span>>(&#x26;<span class="hljs-symbol">'t</span> <span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, arg: Arg) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::LendingOutput&#x3C;<span class="hljs-symbol">'t</span>>;
-    }
+    <span class="hljs-keyword">type</span> <span class="hljs-title class_">CallRefFuture</span>&#x3C;<span class="hljs-symbol">'a</span>>: Future&#x3C;Output = <span class="hljs-keyword">Self</span>::Output>
+        <span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'a</span>;
 
-    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">AnonymousAsyncClosure</span>&#x3C;<span class="hljs-symbol">'a</span>> {
-        <span class="hljs-comment">// captures</span>
-        xs: &#x26;<span class="hljs-symbol">'a</span> <span class="hljs-keyword">mut</span> <span class="hljs-type">Vec</span>&#x3C;<span class="hljs-type">i32</span>>
-    }
+    <span class="hljs-keyword">extern</span> <span class="hljs-string">"rust-call"</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">async_call_mut</span>(
+        &#x26;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>,
+        args: Args,
+    ) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::CallRefFuture&#x3C;<span class="hljs-symbol">'_</span>>;
+}
+</code></pre>
+<h1>実装</h1>
+<ul>
+<li>上記のコードに相当する処理を実行するクロージャを GAT を用いて実装していく。</li>
+<li>実装にあたり以下の <code>nightly feature</code> を使っている。ただし、後述する方法で回避することもできる。</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-meta">#![feature(
+    impl_trait_in_assoc_type, 
+)]</span>
+</code></pre>
+<h2>LendingTrait</h2>
+<ul>
+<li>公式の実装に習い、戻り値の借用期間を考慮した <code>LendingFnMut</code> を実装する。</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">trait</span> <span class="hljs-title class_">LendingFnMut</span>&#x3C;Arg> {
+    <span class="hljs-keyword">type</span> <span class="hljs-title class_">LendingOutput</span>&#x3C;<span class="hljs-symbol">'t</span>>
+    <span class="hljs-keyword">where</span>
+        <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'t</span>;
 
-    <span class="hljs-keyword">impl</span>&#x3C;<span class="hljs-symbol">'a</span>> LendingFnMut&#x3C;<span class="hljs-type">i32</span>> <span class="hljs-keyword">for</span> <span class="hljs-title class_">AnonymousAsyncClosure</span>&#x3C;<span class="hljs-symbol">'a</span>> {
-        
-        <span class="hljs-comment">// impl trait in assoc type now requires nightly...</span>
-        
-        <span class="hljs-keyword">type</span> <span class="hljs-title class_">LendingOutput</span>&#x3C;<span class="hljs-symbol">'t</span>> = <span class="hljs-keyword">impl</span> <span class="hljs-title class_">Future</span>&#x3C;Output = ()> <span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'t</span>;
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_mut</span>(&#x26;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, arg: Arg) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::LendingOutput&#x3C;<span class="hljs-symbol">'_</span>>;
+}
 
-        <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_mut</span>&#x3C;<span class="hljs-symbol">'t</span>>(&#x26;<span class="hljs-symbol">'t</span> <span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, arg: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::LendingOutput&#x3C;<span class="hljs-symbol">'t</span>> {
-            <span class="hljs-keyword">async</span> <span class="hljs-keyword">move</span> {
-                <span class="hljs-keyword">self</span>.xs.<span class="hljs-title function_ invoke__">push</span>(arg);
-            }
+<span class="hljs-keyword">impl</span>&#x3C;<span class="hljs-symbol">'c</span>, Arg> LendingFnMut&#x3C;Arg> <span class="hljs-keyword">for</span> <span class="hljs-title class_">AnonymousAsyncClosure</span>&#x3C;<span class="hljs-symbol">'c</span>, Arg> {
+    
+    <span class="hljs-keyword">type</span> <span class="hljs-title class_">LendingOutput</span>&#x3C;<span class="hljs-symbol">'t</span>> = <span class="hljs-keyword">impl</span> <span class="hljs-title class_">Future</span>&#x3C;Output = ()> <span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'t</span>;
+
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">call_mut</span>(&#x26;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, arg: Arg) <span class="hljs-punctuation">-></span> <span class="hljs-keyword">Self</span>::LendingOutput&#x3C;<span class="hljs-symbol">'_</span>> {
+        <span class="hljs-keyword">async</span> <span class="hljs-keyword">move</span> {
+            <span class="hljs-keyword">self</span>.xs.<span class="hljs-title function_ invoke__">push</span>(arg);
         }
     }
-
+}
+</code></pre>
+<ul>
+<li>
+<p>associated type の定義に <code>impl Trait</code> を用いているが、ここは <code>nightly</code> に依存する。</p>
+</li>
+<li>
+<p>回避策の一つとして、<code>Pin&#x3C;Box&#x3C;dyn Future>></code> に逃がす方法が考えられるが、この方法では <code>Box</code> による allocation と dynamic dispatch が必要になる。</p>
+</li>
+</ul>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">type</span> <span class="hljs-title class_">LendingOutput</span>&#x3C;<span class="hljs-symbol">'t</span>> = Pin&#x3C;<span class="hljs-type">Box</span>&#x3C;<span class="hljs-keyword">dyn</span> Future&#x3C;Output = ()> + <span class="hljs-symbol">'t</span>>> 
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">Self</span>: <span class="hljs-symbol">'t</span>;
+</code></pre>
+<h2>Closure</h2>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">AnonymousAsyncClosure</span>&#x3C;<span class="hljs-symbol">'c</span>, Arg> {
+    xs: &#x26;<span class="hljs-symbol">'c</span> <span class="hljs-keyword">mut</span> <span class="hljs-type">Vec</span>&#x3C;Arg>
+}
+</code></pre>
+<h1>Test</h1>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">async</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">async_block_closure_test</span>() {
 
     <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">xs</span> = <span class="hljs-built_in">vec!</span>[];
 
@@ -42,7 +117,10 @@
 
     <span class="hljs-built_in">println!</span>(<span class="hljs-string">"{xs:?}"</span>);
 }
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】AsyncFnMut を GATs で強引に実装してみる"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 5, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"xNYpItv_lFVbEL8RLeWgS"}
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">cx</span> = std::task::Context::<span class="hljs-title function_ invoke__">from_waker</span>(std::task::Waker::<span class="hljs-title function_ invoke__">noop</span>());
+<span class="hljs-keyword">let</span> <span class="hljs-variable">_</span> = std::pin::pin!(<span class="hljs-title function_ invoke__">async_block_closure_test</span>()).<span class="hljs-title function_ invoke__">poll</span>(&#x26;<span class="hljs-keyword">mut</span> cx);
+</code></pre>
+<h1>Congratulations!</h1>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Rust】AsyncFnMut を GAT で実装してみる"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"May 5, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"mcfZKXWFhzdRXI7ebBTD1"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","rust",{"href":"/tags/rust","children":"rust"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

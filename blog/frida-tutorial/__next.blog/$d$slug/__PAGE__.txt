@@ -164,7 +164,7 @@ java.lang.Exception
 <li>起動直後の処理を追う場合。</li>
 </ul>
 <pre><code class="hljs language-bash">frida -U -f com.example.app -l script.js
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Frida】エミュレータ上で動的解析"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 25, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"mcfZKXWFhzdRXI7ebBTD1"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【Frida】エミュレータ上で動的解析"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 25, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"i4QsdNqJ0EY5Fm01DI3Tt"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}],["$","$L6","frida",{"href":"/tags/frida","children":"frida"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

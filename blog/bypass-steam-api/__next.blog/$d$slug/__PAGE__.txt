@@ -116,7 +116,7 @@ QuitOrThrow called
 <li>
 <p>File -> Save Module から改変した DLL をエクスポートできる。エクスポート後、元の <code>Game.dll</code> を置き換え、<code>if-app.exe</code> を直接起動すると、Steam なしで起動することに成功する。</p>
 </li>
-</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【In Falsus Demo】Steamworks の初期化をバイパスして起動する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"September 13, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"WMFAcztGOW-mLWMqYzOzX"}
+</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【In Falsus Demo】Steamworks の初期化をバイパスして起動する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"September 13, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"43NloVL2SrYNcTaGJX4GQ"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","dnspy",{"href":"/tags/dnspy","children":"dnspy"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

@@ -2,27 +2,27 @@
 6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
 7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-2:Tf69,<h1>前提条件</h1>
+2:Tf3e,<h1>前提条件</h1>
 <ul>
-<li>公式にバンドルが配信されているバージョンであること</li>
+<li>Android Emulator (Android 15.0 ("VanillaIceCream") | x86_64)</li>
+</ul>
+<h1>概要</h1>
+<ul>
+<li>ゲーム初回起動時にダウンロードするバンドルファイルは <code>100MB</code> ごとに分割されており、<code>/data/data/moe.low.arc/files/dltemp</code> に配置される。</li>
+</ul>
+<pre><code>6.16.0.json // metadata
+6.16.0_0.bundle
+6.16.0_1.bundle
+6.16.0_2.bundle.tmp // downloading...
+</code></pre>
+<ul>
+<li>その他、バンドルのメタデータを含む <code>6.16.0.json</code> も必要。</li>
 </ul>
 <h1>How to extract</h1>
 <ul>
-<li>
-<p>現在、配信されるバンドルファイルは <code>100MB</code> ごとに分割されており、それぞれ <code>6.14.11_0.bundle</code> <code>6.14.11_1.bundle</code> ...（ダウンロード中の拡張子は <code>.bundle.tmp</code>） と命名され、<code>/data/data/moe.low.arc/files/dltemp</code> に配置される。</p>
-</li>
-<li>
-<p>その他、バンドルのメタデータを含む <code>6.14.11.json</code> も必要。</p>
-</li>
-<li>
-<p>ゲーム内で上記のファイルをダウンロードし終えると、ファイルの検証に移り、これらのファイルはすぐに削除されてしまう。（アプリ本体にマージされる）</p>
-</li>
-<li>
-<p><strong>これを回避するには、すべての <code>6.14.11_N.bundle</code> をダウンロードし終えた直後にアプリを強制終了すればよい。</strong></p>
-</li>
-<li>
-<p><code>N</code> の値はゲーム内メッセージで確認できるファイルサイズを <code>100MB</code> で割った値により計算できる。（例： <code>853.33MB</code> -> <code>N = 8</code>）</p>
-</li>
+<li>ゲーム内で上記のファイルをダウンロードし終えると、ファイルの検証に移り、これらのファイルはすぐに削除されてしまう。（アプリ本体にマージされる）</li>
+<li><strong>これを回避するには、すべての <code>6.16.0_N.bundle</code> をダウンロードし終えた直後にアプリを強制終了すればよい。</strong></li>
+<li><code>N</code> の値はゲーム内メッセージで確認できるファイルサイズを <code>100MB</code> で割った値により計算できる。（例： <code>853.33MB</code> -> <code>N = 8</code>）</li>
 </ul>
 <h1>Extract bundles!</h1>
 <p><code>/data/data/</code> へのアクセスは非 root 端末では禁止されている。そのため、Android Studio Emulator を使用する。
@@ -38,10 +38,10 @@ TARGET=<span class="hljs-string">"/data/data/<span class="hljs-variable">${PACKA
 
 <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>
 <span class="hljs-keyword">do</span>
-    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.14.11_0.bundle"</span> ] &#x26;&#x26;
-    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.14.11_1.bundle"</span> ] &#x26;&#x26;
+    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.16.0_0.bundle"</span> ] &#x26;&#x26;
+    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.16.0_1.bundle"</span> ] &#x26;&#x26;
     <span class="hljs-comment"># ...</span>
-    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.14.11_8.bundle"</span> ] &#x26;&#x26; {
+    [ -f <span class="hljs-string">"<span class="hljs-variable">${TARGET}</span>/6.16.0_8.bundle"</span> ] &#x26;&#x26; {
         am force-stop <span class="hljs-string">"<span class="hljs-variable">$PACKAGE</span>"</span>
         <span class="hljs-built_in">exit</span> 0
     }
@@ -64,21 +64,21 @@ su
 </ul>
 <pre><code class="hljs language-bash">adb pull /data/data/moe.low.arc/files/dltemp
 </code></pre>
-<h1>Congratulations!</h1>
-<h1>Appendix: .bundle -> .cb</h1>
+<h1>Appendix</h1>
+<h2><code>cb</code> ファイルへ変換</h2>
 <ul>
 <li>
-<p><a href="https://github.com/Lost-MSth/Arcaea-Bundler.git">Bundler</a> をクローンし、<code>main.py</code> を入手する。</p>
+<p><a href="https://github.com/Lost-MSth/Arcaea-Bundler.git">Arcaea-Bundler</a> を clone し、<code>main.py</code> を入手する。</p>
 </li>
 <li>
-<p><code>./bundles/</code> に <code>dltemp/</code> 以下のファイルがコピーされているとする。</p>
+<p><code>bundles/</code> に <code>dltemp/</code> 以下のファイルがコピーされているとする。</p>
 </li>
 </ul>
-<pre><code class="hljs language-bash">python main.py d -i ./bundles/6.14.11.bundle -m ./bundles/6.14.11.json 
+<pre><code class="hljs language-bash">python main.py d -i ./bundles/6.16.0.bundle -m ./bundles/6.16.0.json 
 <span class="hljs-comment"># -> ./output</span>
-python main.py b -i output -o ./6.14.11 -av 6.14.11 -bv 6.14.11 
+python main.py b -i output -o ./6.16.0 -av 6.16.0 -bv 6.16.0 
 <span class="hljs-comment"># .cb files generated</span>
-</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.14.11】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"June 14, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"WMFAcztGOW-mLWMqYzOzX"}
+</code></pre>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.16.0】Bundle を抽出する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"September 13, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"43NloVL2SrYNcTaGJX4GQ"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]

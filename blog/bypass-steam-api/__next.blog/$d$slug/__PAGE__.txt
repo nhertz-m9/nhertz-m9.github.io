@@ -1,0 +1,123 @@
+1:"$Sreact.fragment"
+6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+2:T150e,<h1>前提条件</h1>
+<ul>
+<li>dnSpy v6.1.8 (.NET)</li>
+</ul>
+<h1>背景</h1>
+<ul>
+<li>
+<p>インストールディレクトリ直下の <code>if-app.exe</code> を直接起動すると、Steam 側に「ゲーム設定が利用できません」とのエラーメッセージが表示され、ゲーム自体は応答なしとなる。</p>
+</li>
+<li>
+<p><code>%USERPROFILE%\AppData\LocalLow\lowiro\if-app\Player.log</code> の末尾を見ると、Unity / DirectX / FMOD 側の初期化処理は正常に完了しており、ゲーム側の初期化処理で終了していることが確認できる。</p>
+</li>
+</ul>
+<pre><code>Starting up. Version:0.3.1
+Before ApplicationHelper
+[FMOD] InitCore successful
+[FMOD] InitCore successful
+QuitOrThrow called
+</code></pre>
+<ul>
+<li>
+<p><code>if-app_Data\Plugins\x86_64\steam_api64.dll</code>、<code>if-app_Data\Managed\com.rlabrecque.steamworks.net.dll</code> が存在する。これは Steamworks.NET を利用する構成である。</p>
+</li>
+<li>
+<p><code>if-app_Data\Managed</code> 以下の DLL が Steamworks の初期化を行っているのだと考えられるので、とりあえず、<code>Game.dll</code> を dnSpy で解析してみる。</p>
+</li>
+</ul>
+<h1>解析</h1>
+<h2>原因箇所の特定</h2>
+<ul>
+<li>ログに出力されていた <code>Before ApplicationHelper</code> を文字列検索してみると、<code>Start()</code> 関数が見つかる。</li>
+</ul>
+<pre><code class="hljs language-cs"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>()</span>
+{
+    Debug.unityLogger.Log(<span class="hljs-string">"Before ApplicationHelper"</span>);
+    $se.$Nz();
+
+    <span class="hljs-comment">// extra lines...</span>
+
+    <span class="hljs-keyword">if</span> (!$p.$NA())
+    {
+        $p.$oA();
+    }
+
+    Application.quitting += <span class="hljs-built_in">delegate</span>()
+    {
+        $IA.$wb(<span class="hljs-literal">true</span>);
+        SteamAPI.Shutdown();
+    };
+
+    Debug.unityLogger.Log(<span class="hljs-string">"After ApplicationHelper"</span>);
+}
+</code></pre>
+<ul>
+<li>中央の条件分岐が怪しい。<code>$p.$oA()</code> の定義にジャンプすると、ログに出力されていた <code>QuitOrThrow called</code> の発生源が見つかる。</li>
+</ul>
+<pre><code class="hljs language-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> $oA()
+{
+    Debug.LogError(<span class="hljs-string">"QuitOrThrow called"</span>);
+    Application.Quit(<span class="hljs-number">0</span>);
+    Environment.Exit(<span class="hljs-number">0</span>);
+}
+</code></pre>
+<ul>
+<li>条件式部分の <code>$p.$NA()</code> は SteamAPI の初期化処理である。失敗すれば例外を発生させ、成功すれば <code>true</code> を返す。</li>
+</ul>
+<pre><code class="hljs language-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">bool</span> $NA()
+{
+    <span class="hljs-keyword">if</span> ($p.$Af)
+    {
+        $p.$Bb();
+        <span class="hljs-keyword">if</span> (SteamAPI.RestartAppIfNecessary($p.$Te))
+        {
+            $p.$oA();
+        }
+        <span class="hljs-keyword">if</span> (!SteamAPI.Init())
+        {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">"SteamAPI failed to initialize"</span>);
+        }
+        <span class="hljs-keyword">if</span> (!Packsize.Test())
+        {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">"Packsize Test returned false, the wrong version of Steamworks.NET is being run in this platform."</span>);
+        }
+        <span class="hljs-keyword">if</span> (!DllCheck.Test())
+        {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(<span class="hljs-string">"DllCheck Test returned false, One or more of the Steamworks binaries seems to be the wrong version."</span>);
+        }
+        $p.$Af = <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+</code></pre>
+<h2>改変例</h2>
+<ul>
+<li>
+<p>上述の <code>$p.$NA()</code> が常に <code>true</code> を返すよう改変してみる。冒頭の <code>if</code> 分岐を通らなければ、そもそも SteamAPI の初期化自体行わないので、条件式 <code>$p.$Af</code> を否定してみる。</p>
+</li>
+<li>
+<p>該当行で右クリックし、<code>Edit IL Instructions</code> を選択。</p>
+</li>
+</ul>
+<pre><code>1 ldsfld bool $b.$p::$Af
+2 brtrue.s 24 ldc.i4.1
+...
+24 ldc.i4.1
+25 ret
+</code></pre>
+<ul>
+<li>
+<p><code>brtrue.s</code> はスタックの一番上にある値が <code>true</code> なら、指定された場所へジャンプする命令である。条件を反転したい場合は <code>brfalse.s</code> に置き換えればよい。</p>
+</li>
+<li>
+<p>File -> Save Module から改変した DLL をエクスポートできる。エクスポート後、元の <code>Game.dll</code> を置き換え、<code>if-app.exe</code> を直接起動すると、Steam なしで起動することに成功する。</p>
+</li>
+</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【In Falsus Demo】Steamworks の初期化をバイパスして起動する"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"September 13, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"WMFAcztGOW-mLWMqYzOzX"}
+3:["$","br",null,{}]
+4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","dnspy",{"href":"/tags/dnspy","children":"dnspy"}]]}]}]}]
+5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
+9:null

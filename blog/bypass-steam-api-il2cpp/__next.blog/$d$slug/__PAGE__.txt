@@ -1,0 +1,53 @@
+1:"$Sreact.fragment"
+3:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+4:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+2:T814,<ul>
+<li>c.f. <a href="../bypass-steam-api/">【In Falsus Demo】Steamworks の初期化をバイパスして起動する</a></li>
+</ul>
+<h1>前提条件</h1>
+<ul>
+<li>Il2CppInspectorRedux 2026.2</li>
+<li>Ghidra 12.1.3</li>
+</ul>
+<h1>背景</h1>
+<ul>
+<li>
+<p>前回は <code>if-app_Data\Managed</code> 以下の DLL を dnSpy で解析した。しかし、今回は <code>Managed</code> ディレクトリが存在せず、該当する DLL はすべて Unity IL2CPP で生成された <code>GameAssembly.dll</code> に集約されている。</p>
+</li>
+<li>
+<p>IL2CPP</p>
+</li>
+</ul>
+<pre><code>CSharp Assembly -> Cpp code -> GameAssembly.dll
+</code></pre>
+<ul>
+<li>
+<p>また、ネイティブコード以外の情報は、<code>infalsus_Data\il2cpp_data\Metadata\global-metadata.dat</code> にメタデータとして存在する。</p>
+</li>
+<li>
+<p>dnSpy で構造を確認することはできないので、Ghidra + Il2CppInspectorRedux を使用して解析する。Il2CppDumper は現在 Metadata v39 に対応していないので却下。</p>
+</li>
+<li>
+<p>Il2CppInspectorRedux で IL2CPP の解析情報を生成し、それを Ghidra へ取り込む。</p>
+</li>
+</ul>
+<h1>Il2CppInspectorRedux</h1>
+<p><code>global-metadata.dat</code>、<code>GameAssembly.dll</code> を指定し、Ghidra 向けの Disassembler metadata を生成する。</p>
+<pre><code>il2cpp.h
+il2cpp.json
+il2cpp.py
+</code></pre>
+<h1>Ghidra</h1>
+<ul>
+<li>
+<p>c.f. <a href="https://github.com/LukeFZ/Il2CppInspectorRedux?adding-metadata-to-your-ghidra-workflow#adding-metadata-to-your-ghidra-workflow">Adding metadata to your Ghidra workflow</a></p>
+</li>
+<li>
+<p>先ほど生成した <code>il2cpp.py</code> は実行に Python 3 を要求するため、Ghidra は <code>ghidraRun.bat</code> ではなく <code>support\pyghidraRun.bat</code> から起動する必要がある。</p>
+</li>
+<li>
+<p>手順に沿って Auto Analysis を終わらせた後、Symbol Tree Window にて <code>Game.dll::ifapp::Game::StartUpScene::StartUpScene_Start</code> を確認できる。</p>
+</li>
+</ul>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【In Falsus】Unity IL2CPP をリバースエンジニアリングする"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"September 13, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],["$","br",null,{}],["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L3","ghidra",{"href":"/tags/ghidra","children":"ghidra"}]]}]}]}]]}]}],null,["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"f_qKbpOSVbQ7X8M1hUeZi"}
+6:null

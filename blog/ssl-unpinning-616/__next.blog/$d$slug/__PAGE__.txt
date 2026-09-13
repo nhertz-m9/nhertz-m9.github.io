@@ -2,13 +2,13 @@
 6:I[22016,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
 7:I[97367,["/_next/static/chunks/13h-0fd.p-1ga.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-2:T170e,<h1>前提条件</h1>
+2:T1712,<h1>前提条件</h1>
 <ul>
 <li>Android Sdk (apktool, zipalign, apksigner)</li>
 <li>Arcaea 6.16.0 (xapk)</li>
 <li>Ghidra</li>
 </ul>
-<h1>APKの編集準備</h1>
+<h1>APK の編集準備</h1>
 <ul>
 <li>分割 apk の形で配布されている。再ビルド時にすべての分割で署名を統一する必要がある。</li>
 </ul>
@@ -21,7 +21,7 @@ apktool d <span class="hljs-string">"moe.low.arc.apk"</span> <span class="hljs-c
 <h1>SSL Pinning</h1>
 <p><code>libcocos2dcpp.so</code> 内で独自の SSL Pinning が実装されているため、
 <a href="https://codeshare.frida.re/@masbog/frida-android-unpinning-ssl/">Project: frida-android-unpinning-ssl</a> 等の汎用スクリプトは使用できない。</p>
-<h2>Ghidraでパッチを当てる</h2>
+<h2>Ghidra でパッチを当てる</h2>
 <ul>
 <li>Ghidra で <code>libcocos2dcpp.so</code> を開き、Auto Analyze を実行。</li>
 <li>最低限のオプションを以下に示す。</li>
@@ -87,7 +87,7 @@ Function Start Search After Code
 <li>上と同様に、該当する <code>BL</code> 命令を <code>NOP</code> する。</li>
 <li>File -> Export Program で ELF を選択し、任意のディレクトリにエクスポート。</li>
 </ul>
-<h2>APKを再ビルドする</h2>
+<h2>APK を再ビルドする</h2>
 <ul>
 <li>パッチを当てた <code>libcocos2dcpp.so</code> で、元のファイルを上書きする。</li>
 <li>署名用のキーストアを作っておく。<code>./my.keystore</code></li>
@@ -97,7 +97,7 @@ zipalign -p -f 4 <span class="hljs-string">"moe.low.arc.apk"</span> <span class=
 apksigner sign --ks ./my.keystore --ks-key-alias myalias <span class="hljs-string">"moe.low.arc-aligned.apk"</span>
 <span class="hljs-comment"># as well as other split apk folders...</span>
 </code></pre>
-<h2>APKをインストールする</h2>
+<h2>APK をインストールする</h2>
 <ul>
 <li>adb デバッグが有効であることを確認する。</li>
 </ul>
@@ -111,7 +111,7 @@ apksigner sign --ks ./my.keystore --ks-key-alias myalias <span class="hljs-strin
 <ul>
 <li>正常に起動することを確認する。</li>
 </ul>
-<h1>Congratulations!</h1>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.16.0】SSL Unpinning"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 1, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"43NloVL2SrYNcTaGJX4GQ"}
+<h1>Congratulations!</h1>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":["$","article",null,{"children":[["$","div",null,{"className":"title","children":[["$","h1",null,{"className":"title","children":"【moe.low.arc v6.16.0】SSL Unpinning"}],["$","div",null,{"className":"meta","children":["$","time",null,{"children":"August 1, 2026"}]}]]}],["$","section",null,{"className":"body","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}]}],null,"$L5"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"f_qKbpOSVbQ7X8M1hUeZi"}
 3:["$","br",null,{}]
 4:["$","div",null,{"className":"post-tags","children":["$","nav",null,{"className":"nav tags","children":["$","div",null,{"className":"tags","children":[["$","$L6","android",{"href":"/tags/android","children":"android"}],["$","$L6","ghidra",{"href":"/tags/ghidra","children":"ghidra"}]]}]}]}]
 5:["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]
